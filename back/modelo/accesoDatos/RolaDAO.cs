@@ -8,6 +8,6 @@ public interface RolaDAO
 
     public void UpdateRola(Rola rola);
 
-    public void DeleteRola(int id_rolas);
+    public void DeleteRola(int id_rola);
     
 }   

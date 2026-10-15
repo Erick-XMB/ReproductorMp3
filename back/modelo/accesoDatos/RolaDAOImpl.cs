@@ -91,7 +91,7 @@ public class RolaDAOImpl : RolaDAO
 
     }
 
-    public void DeleteRola(int id_rolas)
+    public void DeleteRola(int id_rola)
     {
         SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
@@ -99,7 +99,7 @@ public class RolaDAOImpl : RolaDAO
         string sql = @"DELETE FROM rolas WHERE id_rola = $id_rola";
 
         SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
-        command.Parameters.AddWithValue("$id_rola", id_rolas);
+        command.Parameters.AddWithValue("$id_rola", id_rola);
         command.ExecuteNonQuery();
     }
 }
