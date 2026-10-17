@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7P5GS6Lf5mE=",
+  "dgSpecHash": "IRv1Hux7Liw=",
   "success": true,
   "projectFilePath": "/home/killomanlinux/Documentos/modelado&programacion/ReproductorMp3/back/back.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,8 @@
     "/home/killomanlinux/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.1.13/sqlitepclraw.bundle_e_sqlite3.2.1.13.nupkg.sha512",
     "/home/killomanlinux/.nuget/packages/sqlitepclraw.core/2.1.13/sqlitepclraw.core.2.1.13.nupkg.sha512",
     "/home/killomanlinux/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.13/sqlitepclraw.lib.e_sqlite3.2.1.13.nupkg.sha512",
-    "/home/killomanlinux/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.13/sqlitepclraw.provider.e_sqlite3.2.1.13.nupkg.sha512"
+    "/home/killomanlinux/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.13/sqlitepclraw.provider.e_sqlite3.2.1.13.nupkg.sha512",
+    "/home/killomanlinux/.nuget/packages/taglibsharp/2.3.0/taglibsharp.2.3.0.nupkg.sha512"
   ],
   "logs": []
 }

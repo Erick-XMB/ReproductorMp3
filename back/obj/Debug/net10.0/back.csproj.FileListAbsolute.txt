@@ -41,3 +41,4 @@
 /home/killomanlinux/Documentos/modelado&programacion/ReproductorMp3/back/bin/Debug/net10.0/runtimes/win-x86/native/e_sqlite3.dll
 /home/killomanlinux/Documentos/modelado&programacion/ReproductorMp3/back/obj/Debug/net10.0/back.csproj.AssemblyReference.cache
 /home/killomanlinux/Documentos/modelado&programacion/ReproductorMp3/back/obj/Debug/net10.0/back.csproj.Up2Date
+/home/killomanlinux/Documentos/modelado&programacion/ReproductorMp3/back/bin/Debug/net10.0/TagLibSharp.dll

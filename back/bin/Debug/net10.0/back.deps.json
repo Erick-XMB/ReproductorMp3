@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v10.0": {
       "back/1.0.0": {
         "dependencies": {
-          "Microsoft.Data.Sqlite": "10.0.13"
+          "Microsoft.Data.Sqlite": "10.0.13",
+          "TagLibSharp": "2.3.0"
         },
         "runtime": {
           "back.dll": {}
@@ -176,6 +177,14 @@
             "fileVersion": "2.1.13.3146"
           }
         }
+      },
+      "TagLibSharp/2.3.0": {
+        "runtime": {
+          "lib/netstandard2.0/TagLibSharp.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.0.0"
+          }
+        }
       }
     }
   },
@@ -226,6 +235,13 @@
       "sha512": "sha512-ZU60dSqoSNRe49KcQDUmOVgdRtjITOssVXFtiISs+zJXDI4D2Sndwpn2NOtzDQNPu0ZAvpoLPQ+GLKv6iEZn8Q==",
       "path": "sqlitepclraw.provider.e_sqlite3/2.1.13",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.13.nupkg.sha512"
+    },
+    "TagLibSharp/2.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Qo4z6ZjnIfbR3Us1Za5M2vQ97OWZPmODvVmepxZ8XW0UIVLGdO2T63/N3b23kCcyiwuIe0TQvMEQG8wUCCD1mA==",
+      "path": "taglibsharp/2.3.0",
+      "hashPath": "taglibsharp.2.3.0.nupkg.sha512"
     }
   }
 }

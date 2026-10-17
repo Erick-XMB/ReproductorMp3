@@ -47,6 +47,14 @@ public class Album
         this.rolas = rolas;
     }
 
+    public Album(int id_album, string path, string name, int year)
+    {
+        this.id_album = id_album;
+        this.path = path;
+        this.name = name;
+        this.year = year;
+    }
+
     public Album(int id_album)
     {
         this.id_album = id_album;
