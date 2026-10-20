@@ -16,12 +16,12 @@ public class AlbumDAOImpl : AlbumDAO
 
     public void CreateAlbum(Album album)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         String sql = @"INSERT INTO albums (path, name, year) VALUES ($path, $name, $year);";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$path", album.Path);
         command.Parameters.AddWithValue("$name", album.Name);
@@ -32,16 +32,16 @@ public class AlbumDAOImpl : AlbumDAO
 
     public Album GetAlbum(int id_album)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"SELECT * FROM albums WHERE id_album = $id_album";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$id_album", id_album);
 
-        SqliteDataReader lector = command.ExecuteReader();
+        using SqliteDataReader lector = command.ExecuteReader();
 
         if (lector.Read())
         {
@@ -59,18 +59,18 @@ public class AlbumDAOImpl : AlbumDAO
 
     public Album GetAlbumPorNombreYRuta(string name, string ruta)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"SELECT * FROM albums WHERE name = $name AND path = $path";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$name", name);
         command.Parameters.AddWithValue("$path", ruta);
 
 
-        SqliteDataReader lector = command.ExecuteReader();
+        using SqliteDataReader lector = command.ExecuteReader();
 
         if (lector.Read())
         {
@@ -90,11 +90,11 @@ public class AlbumDAOImpl : AlbumDAO
 
     public void UpdateAlbum(Album album)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"UPDATE albums SET path = $path, name = $name, year = $year WHERE id_album = $id_album";
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$id_album", album.IdAlbum);
 
         command.Parameters.AddWithValue("$path", album.Path);
@@ -105,12 +105,12 @@ public class AlbumDAOImpl : AlbumDAO
 
     public void DeleteAlbum(int id_album)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"DELETE FROM albums WHERE id_album = $id_album";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$id_album", id_album);
         command.ExecuteNonQuery();
     }

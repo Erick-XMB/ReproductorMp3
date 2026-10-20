@@ -17,12 +17,12 @@ public class PerformerDAOImpl : PerformerDAO
 
     public void CreatePerformer(Performer performer)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         String sql = @"INSERT INTO performers (id_type, name) VALUES ($id_type, $name);";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$id_type", performer.IdType);
         command.Parameters.AddWithValue("$name", performer.Name);
@@ -32,16 +32,16 @@ public class PerformerDAOImpl : PerformerDAO
 
     public Performer GetPerformer(int id_performer)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"SELECT * FROM performers WHERE id_performer = $id_performer";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$id_performer", id_performer);
 
-        SqliteDataReader lector = command.ExecuteReader();
+        using SqliteDataReader lector = command.ExecuteReader();
 
         if (lector.Read())
         {
@@ -59,16 +59,16 @@ public class PerformerDAOImpl : PerformerDAO
 
     public Performer GetPerformerPorNombre(string name)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"SELECT * FROM performers WHERE name = $name";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$name", name);
 
-        SqliteDataReader lector = command.ExecuteReader();
+        using SqliteDataReader lector = command.ExecuteReader();
 
         if (lector.Read())
         {
@@ -89,11 +89,11 @@ public class PerformerDAOImpl : PerformerDAO
 
     public void UpdatePerformer(Performer performer)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"UPDATE performers SET id_type = $id_type, name = $name  WHERE id_performer = $id_performer";
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$id_performer", performer.IdPerformer);
 
         command.Parameters.AddWithValue("$id_type", performer.IdType);
@@ -104,12 +104,12 @@ public class PerformerDAOImpl : PerformerDAO
 
     public void DeletePerformer(int id_performer)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"DELETE FROM performers WHERE id_performer = $id_performer";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$id_performer", id_performer);
         command.ExecuteNonQuery();
     }

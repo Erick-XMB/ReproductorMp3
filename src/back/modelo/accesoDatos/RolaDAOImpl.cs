@@ -16,12 +16,12 @@ public class RolaDAOImpl : RolaDAO
 
     public void CreateRola(Rola rola)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         String sql = @"INSERT INTO rolas (id_performer, id_album, path, title, track, year, genre) VALUES ($id_performer, $id_album, $path, $title, $track, $year, $genre);";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$id_performer", rola.Performer.IdPerformer);
         command.Parameters.AddWithValue("$id_album", rola.Album.IdAlbum);
@@ -36,16 +36,16 @@ public class RolaDAOImpl : RolaDAO
 
     public Rola GetRola(int id_rola)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"SELECT * FROM rolas WHERE id_rola = $id_rola";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$id_rola", id_rola);
 
-        SqliteDataReader lector = command.ExecuteReader();
+        using SqliteDataReader lector = command.ExecuteReader();
 
         if (lector.Read())
         {
@@ -73,16 +73,16 @@ public class RolaDAOImpl : RolaDAO
 
     public Rola GetRolaPorRuta(string path)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"SELECT * FROM rolas WHERE path = $path";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$path", path);
 
-        SqliteDataReader lector = command.ExecuteReader();
+        using SqliteDataReader lector = command.ExecuteReader();
 
         if (lector.Read())
         {
@@ -110,11 +110,11 @@ public class RolaDAOImpl : RolaDAO
 
     public void UpdateRola(Rola rola)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"UPDATE rolas SET id_performer = $id_performer, id_album = $id_album, path = $path, title = $title, track = $track, year = $year, genre = $genre WHERE id_rola = $id_rola";
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
         command.Parameters.AddWithValue("$id_rola", rola.IdRola);
         command.Parameters.AddWithValue("$id_performer", rola.Performer.IdPerformer);
@@ -131,12 +131,12 @@ public class RolaDAOImpl : RolaDAO
 
     public void DeleteRola(int id_rola)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
         string sql = @"DELETE FROM rolas WHERE id_rola = $id_rola";
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$id_rola", id_rola);
         command.ExecuteNonQuery();
     }
