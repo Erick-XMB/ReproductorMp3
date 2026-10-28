@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="$(QtBridgePackageId)" Version="0.5.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../back/back.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <QtBridgePackagePrefix>QtGroup.Qt.Bridge.CSharp</QtBridgePackagePrefix>
+    <QtBridgeRuntimeId Condition="'$(QtBridgeRuntimeId)' == ''">$(RuntimeIdentifier)</QtBridgeRuntimeId>
+    <QtBridgeRuntimeId Condition="'$(QtBridgeRuntimeId)' == ''">$(NETCoreSdkPortableRuntimeIdentifier)</QtBridgeRuntimeId>
+    <QtBridgePackageId Condition="'$(QtBridgePackageId)' == ''">$(QtBridgePackagePrefix).$(QtBridgeRuntimeId)</QtBridgePackageId>
+  </PropertyGroup>
+</Project>
