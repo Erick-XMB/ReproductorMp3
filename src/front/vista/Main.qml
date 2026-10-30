@@ -9,6 +9,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls.Basic
 import QtQuick.Controls 2.15
+import QtQuick.Dialogs
 
 
     ApplicationWindow {
@@ -79,11 +80,20 @@ import QtQuick.Controls 2.15
                     width: 35
                     height: 34
                     text: "\u26cf"
-                    onClicked: menu.open()
+                    onClicked: dialogoCarpeta.open()
 
                     background: Rectangle {
                         radius: 6
                         color: botonMenu.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                    }
+                }
+
+                FolderDialog{
+                    id: dialogoCarpeta
+                    options: FolderDialog.ReadOnly
+                    title: "Seleccionar carpeta"
+                    onAccepted: {
+                        var ruta = decodeURIComponent(selectedFolder.toString().replace("file://", ""))
                     }
                 }
 
