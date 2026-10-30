@@ -71,7 +71,7 @@ public class RolaDAOImpl : RolaDAO
         return null!;
     }
 
-    public Rola GetRolaPorRuta(string path)
+    public Rola GetRolaPorRuta(string ruta)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
@@ -80,7 +80,7 @@ public class RolaDAOImpl : RolaDAO
 
         using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
-        command.Parameters.AddWithValue("$path", path);
+        command.Parameters.AddWithValue("$path", ruta);
 
         using SqliteDataReader lector = command.ExecuteReader();
 
