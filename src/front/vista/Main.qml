@@ -1,79 +1,209 @@
-﻿import QtQuick
-import QtQuick.Controls
+﻿    //ApplicationWindow {
+    //id: window
+    //width: 640
+    //height: 480
+    //visible: true
+    //title: qsTr("Reproductor MP3")
+
+import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls.Basic
+import QtQuick.Controls 2.15
 
-ApplicationWindow {
-    id: win
+
+    ApplicationWindow {
+    id: window
+    width: 640
+    height: 480
     visible: true
-    title: "Qt Bridge for C#"
-    width: 365; height: 510
-    color: "#121212"
+    title: qsTr("Reproductor MP3")
+    property bool lightMode: Application.styleHints.colorScheme === Qt.Light
+    property color reallyDark: "#1f1f1f"
+    property color dark: "#262626"
+    property color reallyLight: "#e7e7e7"
+    property color light: "#e0e0e0"
 
-    ColumnLayout {
+    Rectangle {
+        id: rectangle3
         anchors.fill: parent
-        anchors.margins: 24
-        spacing: 20
-
-        Label {
-            text: "Hello, World!"
-            font.pixelSize: 40
-            color: "white"
-            horizontalAlignment: Text.AlignHCenter
-            Layout.alignment: Qt.AlignHCenter
-        }
+        anchors.leftMargin: 0
+        anchors.rightMargin: 0
+        anchors.topMargin: 0
+        anchors.bottomMargin: 0
+        color: "#121212"
 
         ColumnLayout {
-            Layout.fillWidth: true
-            spacing: 6
-            Label {
-                text: "Welcome to Qt Bridge for C#"
+            id: columnLayout
+            anchors.fill: parent
+
+            Rectangle {
+                id: rectangle
+                width: 200
+                height: 200
+                color: "#282828"
                 Layout.fillWidth: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 24
-                color: "#cfcfcf"
+                Layout.preferredHeight: 45
+
+                TextField {
+                    id: buscador
+                    height: 28
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin: 241
+                    anchors.right: botonBuscar.left
+                    anchors.rightMargin: 11
+                    anchors.verticalCenterOffset: 0
+                    placeholderText: qsTr("Buscar canciones, artistas o álbumes")
+                }
+
+                Button {
+                    id: botonBuscar
+                    x: 552
+                    width: 70
+                    height: 28
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+                    anchors.rightMargin: 18
+                    text: "Buscar"
+
+                    background: Rectangle {
+                        radius: 6
+                        color: botonBuscar.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                    }
+                }
+
+                Button {
+                    id: botonMenu
+                    x: 8
+                    y: 6
+                    width: 35
+                    height: 34
+                    text: "\u26cf"
+                    onClicked: menu.open()
+
+                    background: Rectangle {
+                        radius: 6
+                        color: botonMenu.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                    }
+                }
+
+                Button {
+                    id: buscadorFiltrar
+                    x: 49
+                    y: 6
+                    width: 35
+                    height: 34
+                    text: "\u23da"
+                    background: Rectangle {
+                        color: buscadorFiltrar.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        radius: 6
+                    }
+                    onClicked: ventanaBuscar.show()
+                }
             }
 
-            Label {
-                text: "QML Multi-language App UI"
+            Rectangle {
+                id: rectangle1
+                width: 200
+                height: 200
+                color: "#121212"
+                Layout.fillHeight: true
                 Layout.fillWidth: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 24
-                color: "white"
-                wrapMode: Text.WordWrap
-            }
-        }
-
-        Button {
-            id: counterBtn
-            text: Counter.clicks === 0 ? "Click me" : "Clicked " + Counter.clicks + " times"
-
-            Layout.fillWidth: true
-            Layout.preferredHeight: 48
-            font.pixelSize: 16
-
-            hoverEnabled: false
-            focusPolicy: Qt.NoFocus
-
-            readonly property color brandGreen: "#41cd52"
-
-            background: Rectangle {
-                radius: 12
-                border.width: 0
-                color: counterBtn.down
-                    ? Qt.darker(counterBtn.brandGreen, 1.2)
-                    : counterBtn.brandGreen
             }
 
-            contentItem: Text {
-                text: counterBtn.text
-                color: "white"
-                font: counterBtn.font
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                elide: Text.ElideRight
-            }
+            Rectangle {
+                id: rectangle2
+                width: 200
+                height: 200
+                color: "#181818"
+                Layout.fillWidth: true
+                Layout.preferredHeight: 140
 
-            onClicked: Counter.clicks += 1
+                Rectangle {
+                    id: portada
+                    anchors.left: parent.left
+                    anchors.margins: 12
+                    height: parent.height - 24
+                    width: height
+                    color: "#282828"
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                Column {
+                    id: informacion
+                    width: 161
+                    height: 49
+                    anchors.left: portada.right
+                    anchors.leftMargin: 12
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: 4
+
+                    Label {
+                        id: tituloCancion
+                        text: "Nombre de la canción"
+                        font.pixelSize: 16
+                        font.bold: true
+                    }
+
+                    Label {
+                        id: nombreArtista
+                        text: "Artista"
+                        font.pixelSize: 16
+                    }
+                }
+
+                ColumnLayout {
+                    id: reproduccionControles
+                    anchors.left: informacion.right
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.leftMargin: 21
+                    anchors.rightMargin: 20
+                    anchors.topMargin: 15
+                    anchors.bottomMargin: 16
+                    spacing: 8
+
+                    RowLayout {
+                        Layout.alignment: Qt.AlignHCenter
+                        spacing: 20
+
+                        RoundButton {
+                            id: roundButton
+                            text: "\u23ee"
+                        }
+
+                        RoundButton {
+                            id: roundButton1
+                            text: "\u25b6"
+                        }
+
+                        RoundButton {
+                            id: roundButton2
+                            text: "\u23ed"
+                        }
+                    }
+
+                    Item { Layout.fillHeight: true }
+
+                    Slider {
+                        id: slider
+                        value: 0.5
+                        Layout.fillWidth: true
+                    }
+
+                }
+            }
         }
     }
+
+    Window{
+        id: ventanaBuscar
+        width: 400
+        height: 300
+        title: "Busqueda"
+        visible: false
+
+    }
+
 }
