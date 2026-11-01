@@ -1,4 +1,4 @@
-all: back front 
+all: back front runFront
 
 back: 
 	dotnet build src/back/back.csproj

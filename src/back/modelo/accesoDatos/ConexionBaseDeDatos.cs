@@ -9,7 +9,7 @@ public class ConexionBaseDeDatos
 
     private ConexionBaseDeDatos()
     {
-        this.baseDeDatos = "../../BaseDeDatos/Reproductor.db";
+        this.baseDeDatos = "BaseDeDatos/Reproductor.db";
     }
 
     public SqliteConnection CrearConexion()
