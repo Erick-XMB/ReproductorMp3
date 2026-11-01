@@ -24,6 +24,10 @@ import QtQuick.Dialogs
     property color reallyLight: "#e7e7e7"
     property color light: "#e0e0e0"
 
+    MineroVista{
+        id: controlador
+    }
+
     Rectangle {
         id: rectangle3
         anchors.fill: parent
@@ -74,7 +78,7 @@ import QtQuick.Dialogs
                 }
 
                 Button {
-                    id: botonMenu
+                    id: botonMinero
                     x: 8
                     y: 6
                     width: 35
@@ -84,7 +88,7 @@ import QtQuick.Dialogs
 
                     background: Rectangle {
                         radius: 6
-                        color: botonMenu.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        color: botonMinero.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
                     }
                 }
 
@@ -94,6 +98,8 @@ import QtQuick.Dialogs
                     title: "Seleccionar carpeta"
                     onAccepted: {
                         var ruta = decodeURIComponent(selectedFolder.toString().replace("file://", ""))
+                        var rolasGuardadas = controlador.minarYGuardar(ruta);
+                        console.log("Rolas Guardadas:", rolasGuardadas) 
                     }
                 }
 
