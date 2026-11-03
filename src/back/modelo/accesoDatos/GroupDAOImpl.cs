@@ -4,11 +4,20 @@ using Microsoft.Data.Sqlite;
 
 namespace ReproductorMp3.modelo.accesoDatos;
 
-
+/// <summary>
+/// Interfaz que define las operaciones de acceso a datos para los grupos 
+/// </summary>
 public class GroupDAOImpl : GroupDAO
 {
+    /// <summary>
+    /// Atributo que representa la conexion a la base de datos
+    /// </summary>
     private ConexionBaseDeDatos conexion;
 
+    /// <summary>
+    /// Constructor de la clase GroupDAOImpl
+    /// </summary>
+    /// <param name="conexion"> es la conexion de la base de datos </param>
     public GroupDAOImpl(ConexionBaseDeDatos conexion)
     {
         this.conexion = conexion;

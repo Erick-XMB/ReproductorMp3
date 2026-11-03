@@ -4,16 +4,30 @@ using Microsoft.Data.Sqlite;
 
 namespace ReproductorMp3.modelo.accesoDatos;
 
-
+/// <summary>
+/// Clase que implementa la interfaz AlbumDAO 
+/// Se encarga de la logica de la tabla Albums de la base de datos
+/// </summary> 
 public class AlbumDAOImpl : AlbumDAO
 {
+    /// <summary>
+    /// Atributo que representa la conexion a la base de datos
+    /// </summary>
     private ConexionBaseDeDatos conexion;
 
+    /// <summary>
+    /// Constructor de la clase AlbumDAOImpl
+    /// </summary>
+    /// <param name="conexion"> es la conexion de la base de datos </param>
     public AlbumDAOImpl(ConexionBaseDeDatos conexion)
     {
         this.conexion = conexion;
     }
 
+    /// <summary>
+    /// Metodo que inserta un album a la base de datos
+    /// </summary>
+    /// <param name="album"> es el album que se desea insertar </param>
     public void CreateAlbum(Album album)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -30,6 +44,11 @@ public class AlbumDAOImpl : AlbumDAO
         command.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Metodo para obtener un album de la base de datos
+    /// </summary>
+    /// <param name="id_album"> es el identificador del album</param>
+    /// <returns> el album que queriamos obtener </returns>
     public Album GetAlbum(int id_album)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -57,6 +76,12 @@ public class AlbumDAOImpl : AlbumDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metodo para obtener un album de la base de datos segun su nombre y ruta
+    /// </summary>
+    /// <param name="name"> es el nombre del album </param>
+    /// <param name="ruta"> es la ruta del album</param>
+    /// <returns> el album que queriamos obtener </returns>
     public Album GetAlbumPorNombreYRuta(string name, string ruta)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -88,6 +113,10 @@ public class AlbumDAOImpl : AlbumDAO
 
     }
 
+    /// <summary>
+    /// Metodo para actualizar un album de la base de datos
+    /// </summary>
+    /// <param name="album"> es el album que deseamos actualizar</param>
     public void UpdateAlbum(Album album)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -103,6 +132,10 @@ public class AlbumDAOImpl : AlbumDAO
         command.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Metodo para eliminar un album de la base de datos
+    /// </summary>
+    /// <param name="id_album"> es el id del album que deseamos eliminar </param>
     public void DeleteAlbum(int id_album)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();

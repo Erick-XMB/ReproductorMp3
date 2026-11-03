@@ -5,16 +5,29 @@ using SQLitePCL;
 
 namespace ReproductorMp3.modelo.accesoDatos;
 
-
+/// <summary>
+/// Interfaz que define las operaciones de acceso a datos para los performers 
+/// </summary>
 public class PerformerDAOImpl : PerformerDAO
 {
+    /// <summary>
+    /// Atributo que representa la conexion a la base de datos
+    /// </summary>
     private ConexionBaseDeDatos conexion;
 
+    /// <summary>
+    /// Constructor de la clase PerformerDAOImpl
+    /// </summary>
+    /// <param name="conexion"> es la conexion de la base de datos </param>
     public PerformerDAOImpl(ConexionBaseDeDatos conexion)
     {
         this.conexion = conexion;
     }
 
+    /// <summary>
+    /// Metodo que ingresa un performer a la base de datos
+    /// </summary>
+    /// <param name="performer"> es el performer que queremos ingresar </param>
     public void CreatePerformer(Performer performer)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -30,6 +43,11 @@ public class PerformerDAOImpl : PerformerDAO
         command.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Metodo que nus devuelve un performer de la base de datos
+    /// </summary>
+    /// <param name="id_performer"> es el id del performer que queremos obtener </param>
+    /// <returns> el performer que queriamos recuperar </returns>
     public Performer GetPerformer(int id_performer)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -57,6 +75,11 @@ public class PerformerDAOImpl : PerformerDAO
     }
 
 
+    /// <summary>
+    /// Metood que nos devuelve un performer segun su nombre
+    /// </summary>
+    /// <param name="name"> es el nombre del performer que queremos obtener </param>
+    /// <returns> el performer que queriamos recuperar </returns>
     public Performer GetPerformerPorNombre(string name)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -86,7 +109,10 @@ public class PerformerDAOImpl : PerformerDAO
     }
 
 
-
+    /// <summary>
+    /// Metodo que actualiza un performer en la base de datos
+    /// </summary>
+    /// <param name="performer"> es el performer que queremos actualizar </param>
     public void UpdatePerformer(Performer performer)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -102,6 +128,10 @@ public class PerformerDAOImpl : PerformerDAO
         command.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Metodo que elimina un performer de la base de datos
+    /// </summary>
+    /// <param name="id_performer"> es el id del performer que queremos eliminar </param>
     public void DeletePerformer(int id_performer)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();

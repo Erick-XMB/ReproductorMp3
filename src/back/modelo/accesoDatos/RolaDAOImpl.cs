@@ -4,16 +4,29 @@ using Microsoft.Data.Sqlite;
 
 namespace ReproductorMp3.modelo.accesoDatos;
 
-
+/// </sumary>
+/// Interfaz que define las operaciones de acceso a datos para las rolas 
+/// </summary>
 public class RolaDAOImpl : RolaDAO
-{
+{   
+    /// <summary>
+    /// Atributo que representa la conexion a la base de datos
+    /// </summary>
     private ConexionBaseDeDatos conexion;
 
+    /// <summary>
+    /// Constructor de la clase RolaDAOImpl
+    /// </summary>
+    /// <param name="conexion"> es la conexion de la base de datos </param>
     public RolaDAOImpl(ConexionBaseDeDatos conexion)
     {
         this.conexion = conexion;
     }
 
+    /// <summary>
+    /// Metodo que ingresa una rola a la base de datos
+    /// </summary>
+    /// <param name="rola"> es la rola que queremos ingresar </param>
     public void CreateRola(Rola rola)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -34,6 +47,11 @@ public class RolaDAOImpl : RolaDAO
         command.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Metodo que recupera una rola de la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos recuperar </param>
+    /// <returns> la rola que queriamos obtener </returns>
     public Rola GetRola(int id_rola)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -71,6 +89,11 @@ public class RolaDAOImpl : RolaDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metood que recupera una rola de la base de datos por su ruta
+    /// </summary>
+    /// <param name="ruta"> es la ruta de la rola </param>
+    /// <returns> la rola que queriamos recuperar </returns>
     public Rola GetRolaPorRuta(string ruta)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -108,6 +131,10 @@ public class RolaDAOImpl : RolaDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metood que actualiza una rola de la base de datos
+    /// </summary>
+    /// <param name="rola"> es la rola que queremos actualizar </param>
     public void UpdateRola(Rola rola)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -129,6 +156,10 @@ public class RolaDAOImpl : RolaDAO
 
     }
 
+    /// <summary>
+    /// Metodo que elimina una rola de la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos eliminar </param>
     public void DeleteRola(int id_rola)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();

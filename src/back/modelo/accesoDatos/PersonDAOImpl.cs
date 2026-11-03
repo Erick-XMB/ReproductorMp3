@@ -4,16 +4,29 @@ using Microsoft.Data.Sqlite;
 
 namespace ReproductorMp3.modelo.accesoDatos;
 
-
+/// </sumary>
+/// Interfaz que define las operaciones de acceso a datos para las persons 
+/// </summary>
 public class PersonDAOImpl : PersonDAO
 {
+    /// <summary>
+    /// Atributo que representa la conexion a la base de datos
+    /// </summary>
     private ConexionBaseDeDatos conexion;
 
+    /// <summary>
+    /// Constructor de la clase PersonDAOImpl
+    /// </summary>
+    /// <param name="conexion"> es la conexion de la base de datos </param>
     public PersonDAOImpl(ConexionBaseDeDatos conexion)
     {
         this.conexion = conexion;
     }
 
+    /// <summary>
+    /// Metodo que ingresa una persona a la base de datos
+    /// </summary>
+    /// <param name="person">< es la persona que queremos ingresar /param>
     public void CreatePerson(Person person)
     {
         SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -32,6 +45,11 @@ public class PersonDAOImpl : PersonDAO
         command.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Metodo que devuelve una persona de la base de datos
+    /// </summary>
+    /// <param name="id_person"> es el id de la persona que queremos recuperar </param>
+    /// <returns> La Persona que queramos devolver </returns>
     public Person GetPerson(int id_person)
     {
         SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -60,6 +78,10 @@ public class PersonDAOImpl : PersonDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metodo que actualiza una persona de la base de datos
+    /// </summary>
+    /// <param name="person"> la persona que queremos actualizar </param>
     public void UpdatePerson(Person person)
     {
         SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -78,6 +100,10 @@ public class PersonDAOImpl : PersonDAO
         command.ExecuteNonQuery();
     }
 
+    /// <summary>
+    /// Metodo que elimina a una persona de la base de datos
+    /// </summary>
+    /// <param name="id_person"></param>
     public void DeletePerson(int id_person)
     {
         SqliteConnection conexionAbierta = conexion.CrearConexion();

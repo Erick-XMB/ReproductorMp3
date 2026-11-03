@@ -3,8 +3,21 @@ namespace ReproductorMp3.modelo.minero;
 using ReproductorMp3.modelo.entidades;
 using TagLib;
 
+/// <summary>
+/// Clase que representa el Minero del sistema
+/// Contiene la logica por la cual accedemos y guardamos
+/// los metadatos de cada archivo
+/// </summary>
 public class MineroMp3
-{
+{   
+    /// <summary>
+    /// Metodo que dada una cadena que reprsenta la ruta de un directorio
+    /// guarda la informacion de cada archivo del directorio en una lista de archivosMp3
+    /// </summary>
+    /// <param name="ruta"> representa el directorio del cual queremos 
+    /// guardar sus archivos mp3 </param>
+    /// <returns> regresa una lista con la informacion en cadena
+    /// de los archivos con  terminacion .mp3 </returns>
     public List<string> GuardarArchivosMp3(string ruta)
     {
         List<string> archivosMp3 = new List<string>();
@@ -15,6 +28,7 @@ public class MineroMp3
         }
         return archivosMp3;
     }
+
     public DatosMp3? AnalizarArchivoMp3(string ruta)
     {
         var archivo = TagLib.File.Create(ruta);
