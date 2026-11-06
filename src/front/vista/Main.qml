@@ -10,7 +10,7 @@ import QtQuick.Layouts
 import QtQuick.Controls.Basic
 import QtQuick.Controls 2.15
 import QtQuick.Dialogs
-
+import Qt.labs.qmlmodels
 
     ApplicationWindow {
     id: window
@@ -118,13 +118,92 @@ import QtQuick.Dialogs
                 }
             }
 
-            Rectangle {
+         Rectangle {
                 id: rectangle1
                 width: 200
                 height: 200
                 color: "#121212"
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+                
+
+                ColumnLayout{
+                    anchors.fill: parent
+                    spacing: 0
+
+                    HorizontalHeaderView{
+                        id: encabezadoDatos
+
+                        Layout.fillWidth: true
+
+                        syncView: tableview
+                        clip: true
+                        model: ["#", "Nombre", "Artista", "Album", "Genero", "Anio"]
+
+                        delegate: Rectangle{
+                            implicitHeight: 30
+                            color: "#2f7d5b"
+                            border.color: "Black"
+
+                            Text{
+                                text: modelData
+                                color: "#B3B3B3"
+                                anchors.centerIn: parent
+                            }
+                        }
+                    }
+
+                    TableView{
+                        id: tableview
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        clip: true
+                        columnSpacing: 1
+                        rowSpacing: 1
+
+                        columnWidthProvider: function(column) {
+                            let proportions = [0.05, 0.30, 0.20, 0.20, 0.15, 0.10]
+                            return (width - columnSpacing * (columns - 1))
+                                   * proportions[column]
+                        }
+
+                        model: TableModel{
+                            id: myModel
+
+                            TableModelColumn { display: "No" }
+                            TableModelColumn { display: "Nombre" }
+                            TableModelColumn { display: "Artista" }
+                            TableModelColumn { display: "Album" }
+                            TableModelColumn { display: "Genero" }
+                            TableModelColumn { display: "Anio" }
+
+                            rows: [
+                                {
+                                    No: 1,
+                                    Nombre: "Bohemian Rhapsody",
+                                    Artista: "Queen",
+                                    Album: "A Night at the Opera",
+                                    Genero: "Rock",
+                                    Anio: 1975
+                                }
+                            ]
+                        }
+
+
+
+                        delegate: Rectangle {
+                            implicitHeight: 40
+                            color: "#282828"
+                            border.color: "Black"
+
+                            Text {
+                                text: display
+                                color: "white"
+                                anchors.centerIn: parent
+                            }
+                        }
+                    }
+                }
             }
 
             Rectangle {

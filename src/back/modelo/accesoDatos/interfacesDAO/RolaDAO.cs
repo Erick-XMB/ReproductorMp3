@@ -37,5 +37,11 @@ public interface RolaDAO
     /// </summary>
     /// <param name="id_rola"> es el id de la rola que queremos eliminar </param>
     public void DeleteRola(int id_rola);
+
+    /// <summary>
+    /// Metodo que deuvelve todas las rolas de la base de datos
+    /// </summary>
+    /// <returns> la lista de todas las rolas </returns>
+    public List<Rola> GetTodasLasRolas();
     
 }   
