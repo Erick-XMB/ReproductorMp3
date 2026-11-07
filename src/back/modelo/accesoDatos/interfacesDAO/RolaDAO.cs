@@ -26,6 +26,8 @@ public interface RolaDAO
     /// <returns> la rola que queriamos recuperar </returns>
     public Rola GetRolaPorRuta(string ruta);
 
+    public List<Rola> GetRolasPorPalabra(string palabra);
+
     /// <summary>
     /// Metood que actualiza una rola de la base de datos
     /// </summary>

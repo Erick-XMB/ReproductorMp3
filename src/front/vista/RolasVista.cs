@@ -27,11 +27,32 @@ public class RolasVista
         return JsonSerializer.Serialize(filas);
     }
 
+    public string ObtenerRolasPorPalabraJson(string palabra)
+    {
+        List<Rola> rolas = controladorRolas.ObtenerRolasPorPalabra(palabra);
+        var filas = new List<Object>();
+
+        foreach (Rola rola in rolas)
+        {
+            filas.Add(new
+            {
+                No = rola.IdRola,
+                Nombre = rola.Title,
+                Artista = rola.Performer.Name,
+                Album = rola.Album.Name,
+                Genero = rola.Genre,
+                Anio = rola.Year,
+                Ruta = rola.Path
+            });
+        }
+        return JsonSerializer.Serialize(filas);
+    }
+
     public string ObtenerPortadaArchivo(string ruta)
     {
         var portada = controladorRolas.ObtenerPortada(ruta);
 
-        if(portada == null)
+        if (portada == null)
         {
             return "";
         }

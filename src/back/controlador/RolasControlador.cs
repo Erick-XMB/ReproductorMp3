@@ -21,6 +21,11 @@ public class RolasControlador
         return rolaDAO.GetTodasLasRolas();
     }
 
+    public List<Rola> ObtenerRolasPorPalabra(string palabra)
+    {
+        return rolaDAO.GetRolasPorPalabra(palabra);
+    }
+
     public (string TipoImagen, byte[] datos)? ObtenerPortada(string ruta)
     {
         return minero.ObtenerPortada(ruta);

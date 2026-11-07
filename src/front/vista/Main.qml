@@ -38,9 +38,18 @@ import QtMultimedia
         audioOutput: AudioOutput { }
     }
 
-    function cargarRolas(){
+    function cargarRolasAlMinar(){
         myModel.clear()
         var filas = JSON.parse(rolasVista.obtenerRolasJson())
+
+        for(var i = 0; i < filas.length; i++){
+            myModel.appendRow(filas[i])
+        }
+    }
+
+    function cargarRolasPorPalabra(palabra){
+        myModel.clear()
+        var filas = JSON.parse(rolasVista.obtenerRolasPorPalabraJson(palabra))
 
         for(var i = 0; i < filas.length; i++){
             myModel.appendRow(filas[i])
@@ -78,6 +87,8 @@ import QtMultimedia
                     anchors.rightMargin: 11
                     anchors.verticalCenterOffset: 0
                     placeholderText: qsTr("Buscar canciones, artistas o álbumes")
+
+                    onAccepted: botonBuscar.clicked()
                 }
 
                 Button {
@@ -93,6 +104,10 @@ import QtMultimedia
                     background: Rectangle {
                         radius: 6
                         color: botonBuscar.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                    }
+
+                    onClicked: {
+                        cargarRolasPorPalabra(buscador.text)
                     }
                 }
 
@@ -118,7 +133,7 @@ import QtMultimedia
                     onAccepted: {
                         var ruta = decodeURIComponent(selectedFolder.toString().replace("file://", ""))
                         var rolasGuardadas = mineroVista.minarYGuardar(ruta);
-                        cargarRolas()
+                        cargarRolasAlMinar()
                     }
                 }
 
