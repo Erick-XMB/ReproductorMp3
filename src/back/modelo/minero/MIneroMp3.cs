@@ -9,7 +9,7 @@ using TagLib;
 /// los metadatos de cada archivo
 /// </summary>
 public class MineroMp3
-{   
+{
     /// <summary>
     /// Metodo que dada una cadena que reprsenta la ruta de un directorio
     /// guarda la informacion de cada archivo del directorio en una lista de archivosMp3
@@ -66,7 +66,31 @@ public class MineroMp3
         }
         return datosEncontrados;
     }
+
+    public (string TipoImagen, byte[] Datos)? ObtenerPortada(string ruta)
+    {
+        try
+        {
+            using var archivo = TagLib.File.Create(ruta);
+
+            if(archivo.Tag.Pictures.Length == 0)
+            {
+                return null;
+            }
+
+            TagLib.IPicture portada = archivo.Tag.Pictures[0];
+
+            string tipoImagen = string.IsNullOrEmpty(portada.MimeType) ? "image/jpeg" : portada.MimeType;
+            return (tipoImagen, portada.Data.Data);
+
+        } catch (Exception)
+        {
+            return null;
+        }
+    }
 }
+
+
 
 
 

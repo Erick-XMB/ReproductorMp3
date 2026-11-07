@@ -11,6 +11,7 @@ import QtQuick.Controls.Basic
 import QtQuick.Controls 2.15
 import QtQuick.Dialogs
 import Qt.labs.qmlmodels
+import QtMultimedia
 
     ApplicationWindow {
     id: window
@@ -25,7 +26,25 @@ import Qt.labs.qmlmodels
     property color light: "#e0e0e0"
 
     MineroVista{
-        id: controlador
+        id: mineroVista
+    }
+
+    RolasVista{
+        id: rolasVista
+    }
+
+    MediaPlayer{
+        id: reproductor
+        audioOutput: AudioOutput { }
+    }
+
+    function cargarRolas(){
+        myModel.clear()
+        var filas = JSON.parse(rolasVista.obtenerRolasJson())
+
+        for(var i = 0; i < filas.length; i++){
+            myModel.appendRow(filas[i])
+        }
     }
 
     Rectangle {
@@ -98,8 +117,8 @@ import Qt.labs.qmlmodels
                     title: "Seleccionar carpeta"
                     onAccepted: {
                         var ruta = decodeURIComponent(selectedFolder.toString().replace("file://", ""))
-                        var rolasGuardadas = controlador.minarYGuardar(ruta);
-                        console.log("Rolas Guardadas:", rolasGuardadas) 
+                        var rolasGuardadas = mineroVista.minarYGuardar(ruta);
+                        cargarRolas()
                     }
                 }
 
@@ -161,6 +180,22 @@ import Qt.labs.qmlmodels
                         columnSpacing: 1
                         rowSpacing: 1
 
+                        selectionBehavior: TableView.SelectRows
+                        selectionMode: TableView.SingleSelection
+                        selectionModel: ItemSelectionModel{
+                            
+                            onCurrentChanged: function(current, previous){
+                                if(current.valid){
+                                    var fila = myModel.getRow(current.row)
+                                    tituloCancion.text = fila.Nombre
+                                    nombreArtista.text = fila.Artista
+                                    reproductor.source = "file://" + fila.Ruta
+                                    reproductor.play()
+                                    imagenPortada.source = rolasVista.obtenerPortadaArchivo(fila.Ruta)
+                                }
+                            }
+                        }
+
                         columnWidthProvider: function(column) {
                             let proportions = [0.05, 0.30, 0.20, 0.20, 0.15, 0.10]
                             return (width - columnSpacing * (columns - 1))
@@ -177,23 +212,14 @@ import Qt.labs.qmlmodels
                             TableModelColumn { display: "Genero" }
                             TableModelColumn { display: "Anio" }
 
-                            rows: [
-                                {
-                                    No: 1,
-                                    Nombre: "Bohemian Rhapsody",
-                                    Artista: "Queen",
-                                    Album: "A Night at the Opera",
-                                    Genero: "Rock",
-                                    Anio: 1975
-                                }
-                            ]
+                            rows: []
                         }
 
-
-
                         delegate: Rectangle {
+                            required property int row
+
                             implicitHeight: 40
-                            color: "#282828"
+                            color: row  === tableview.selectionModel.currentIndex.row ? "#535353" : "#282828"
                             border.color: "Black"
 
                             Text {
@@ -222,6 +248,13 @@ import Qt.labs.qmlmodels
                     width: height
                     color: "#282828"
                     anchors.verticalCenter: parent.verticalCenter
+                    clip: true
+
+                    Image{
+                        id: imagenPortada
+                        anchors.fill: parent
+                        fillMode: Image.PreserveAspectCrop
+                    }
                 }
 
                 Column {
@@ -270,7 +303,14 @@ import Qt.labs.qmlmodels
 
                         RoundButton {
                             id: roundButton1
-                            text: "\u25b6"
+                            text: reproductor.playbackState === MediaPlayer.PlayingState ? "❙❙" : "\u25b6"
+                            onClicked: {
+                                if(reproductor.playbackState === MediaPlayer.PlayingState){
+                                    reproductor.pause()
+                                } else {
+                                    reproductor.play()
+                                }
+                            }
                         }
 
                         RoundButton {
@@ -283,7 +323,7 @@ import Qt.labs.qmlmodels
 
                     Slider {
                         id: slider
-                        value: 0.5
+                        value: 0
                         Layout.fillWidth: true
                     }
 
