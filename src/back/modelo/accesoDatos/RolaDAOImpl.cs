@@ -131,6 +131,85 @@ public class RolaDAOImpl : RolaDAO
         return null!;
     }
 
+    public List<Rola> GetRolasPorBusquedaAvanzada(ParametrosBusqueda parametrosBusqueda)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"SELECT r.id_rola, r.id_performer, r.id_album, r.path, r.title,
+                        r.track, r.year, r.genre, 
+                        p.id_type, p.name AS performer_name,
+                        a.path AS album_path, a.name AS album_name, a.year AS album_year
+                        FROM rolas r
+                        LEFT JOIN performers p ON r.id_performer = p.id_performer
+                        LEFT JOIN albums a ON r.id_album = a.id_album WHERE 1=1";
+
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+
+        if (!string.IsNullOrWhiteSpace(parametrosBusqueda.Titulo))
+        {
+            sql += " AND r.title LIKE $titulo";
+            command.Parameters.AddWithValue("$titulo", "%" + parametrosBusqueda.Titulo + "%");
+        }
+
+        if (!string.IsNullOrWhiteSpace(parametrosBusqueda.Artista))
+        {
+            sql += " AND p.name LIKE $artista";
+            command.Parameters.AddWithValue("$artista", "%" + parametrosBusqueda.Artista + "%");
+        }
+
+        if (!string.IsNullOrWhiteSpace(parametrosBusqueda.Album))
+        {
+            sql += " AND a.name LIKE $album";
+            command.Parameters.AddWithValue("$album", "%" + parametrosBusqueda.Album + "%");
+        }
+
+        if (!string.IsNullOrWhiteSpace(parametrosBusqueda.Anio.ToString()))
+        {
+            sql += " AND r.year LIKE $anio";
+            command.Parameters.AddWithValue("$anio", "%" + parametrosBusqueda.Anio + "%");
+        }
+
+        if (!string.IsNullOrWhiteSpace(parametrosBusqueda.Genero))
+        {
+            sql += " AND r.genre LIKE $genero";
+            command.Parameters.AddWithValue("$genero", "%" + parametrosBusqueda.Genero + "%");
+        }
+
+        command.CommandText = sql;
+
+        using SqliteDataReader lector = command.ExecuteReader();
+
+        List<Rola> rolas = new List<Rola>();
+
+        while (lector.Read())
+        {
+            Performer performer = new Performer(
+                Convert.ToInt32(lector["id_performer"]),
+                lector["id_type"] is DBNull ? 2 : Convert.ToInt32(lector["id_type"]),
+                lector["performer_name"] is DBNull ? "" : lector["performer_name"].ToString()!
+            );
+
+            Album album = new Album(
+                Convert.ToInt32(lector["id_album"]),
+                lector["album_path"] is DBNull ? "" : lector["album_path"].ToString()!,
+                lector["album_name"] is DBNull ? "" : lector["album_name"].ToString()!,
+                lector["album_year"] is DBNull ? 0 : Convert.ToInt32(lector["album_year"])
+            );
+
+            rolas.Add(new Rola(
+            Convert.ToInt32(lector["id_rola"]),
+            album,
+            performer,
+            lector["path"].ToString()!,
+            lector["title"].ToString()!,
+            Convert.ToInt32(lector["track"]),
+            Convert.ToInt32(lector["year"]),
+            lector["genre"].ToString()!));
+        }
+        return rolas;
+    }
+
 
     public List<Rola> GetRolasPorPalabra(string palabra)
     {

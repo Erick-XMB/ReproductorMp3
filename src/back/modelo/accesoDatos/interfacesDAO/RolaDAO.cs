@@ -28,6 +28,8 @@ public interface RolaDAO
 
     public List<Rola> GetRolasPorPalabra(string palabra);
 
+    public List<Rola> GetRolasPorBusquedaAvanzada(ParametrosBusqueda parametrosBusqueda);
+
     /// <summary>
     /// Metood que actualiza una rola de la base de datos
     /// </summary>

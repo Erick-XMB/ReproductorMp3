@@ -48,6 +48,40 @@ public class RolasVista
         return JsonSerializer.Serialize(filas);
     }
 
+    public string CrearObjetoDeParametrosBusquedaJson(string titulo, string artista, string album, int anio, string genero)
+    {
+        ParametrosBusqueda parametrosBusqueda = new ParametrosBusqueda(titulo, artista, album, anio, genero);
+        return JsonSerializer.Serialize(parametrosBusqueda);
+    }
+
+    public string ObtenerRolasPorBusquedaAvanzadaJson(string parametrosJson)
+    {
+        ParametrosBusqueda? parametrosBusqueda = JsonSerializer.Deserialize<ParametrosBusqueda>(parametrosJson);
+
+        if(parametrosBusqueda == null)
+        {
+            return "[]";
+        }
+
+        List<Rola> rolas = controladorRolas.ObtenerRolasPorBusquedaAvanzada(parametrosBusqueda);
+        var filas = new List<Object>();
+
+        foreach (Rola rola in rolas)
+        {
+            filas.Add(new
+            {
+                No = rola.IdRola,
+                Nombre = rola.Title,
+                Artista = rola.Performer.Name,
+                Album = rola.Album.Name,
+                Genero = rola.Genre,
+                Anio = rola.Year,
+                Ruta = rola.Path
+            });
+        }
+        return JsonSerializer.Serialize(filas);
+    }
+
     public string ObtenerPortadaArchivo(string ruta)
     {
         var portada = controladorRolas.ObtenerPortada(ruta);

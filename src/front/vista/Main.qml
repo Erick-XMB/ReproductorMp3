@@ -56,6 +56,16 @@ import QtMultimedia
         }
     }
 
+    function cargarRolasPorBusquedaAvanzada(titulo, artista, album, anio, genero){
+        myModel.clear()
+        var objetoParametros =  rolasVista.crearObjetoDeParametrosBusquedaJson(titulo, artista, album, anio, genero)
+        var filas = JSON.parse(rolasVista.obtenerRolasPorBusquedaAvanzadaJson(objetoParametros))
+
+        for(var i = 0; i < filas.length; i++){
+            myModel.appendRow(filas[i])
+        }
+    }
+
     Rectangle {
         id: rectangle3
         anchors.fill: parent
@@ -456,11 +466,16 @@ import QtMultimedia
                     Button {
                         id: botonCancelar
                         text: "Cancelar"
+                        onClicked: ventanaBuscar.close()
                     }
 
                     Button {
                         id: botonAceptar
                         text: "Aceptar"
+                        onClicked: {
+                            cargarRolasPorBusquedaAvanzada(textoTitulo.text, textoArtista.text, textoAlbum.text, textoAño.text, textoGenero.text)
+                            ventanaBuscar.close()
+                        }
                     }
 
                 }

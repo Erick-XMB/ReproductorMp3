@@ -30,4 +30,9 @@ public class RolasControlador
     {
         return minero.ObtenerPortada(ruta);
     }
+
+    public List<Rola> ObtenerRolasPorBusquedaAvanzada(ParametrosBusqueda parametrosBusqueda)
+    {
+        return rolaDAO.GetRolasPorBusquedaAvanzada(parametrosBusqueda);
+    }
 }
