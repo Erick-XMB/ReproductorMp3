@@ -164,7 +164,7 @@ public class RolaDAOImpl : RolaDAO
             command.Parameters.AddWithValue("$album", "%" + parametrosBusqueda.Album + "%");
         }
 
-        if (!string.IsNullOrWhiteSpace(parametrosBusqueda.Anio.ToString()))
+        if (parametrosBusqueda.Anio.HasValue && parametrosBusqueda.Anio.Value > 0)
         {
             sql += " AND r.year LIKE $anio";
             command.Parameters.AddWithValue("$anio", "%" + parametrosBusqueda.Anio + "%");
@@ -207,6 +207,7 @@ public class RolaDAOImpl : RolaDAO
             Convert.ToInt32(lector["year"]),
             lector["genre"].ToString()!));
         }
+        Console.WriteLine(sql);
         return rolas;
     }
 

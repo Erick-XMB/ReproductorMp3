@@ -48,9 +48,10 @@ public class RolasVista
         return JsonSerializer.Serialize(filas);
     }
 
-    public string CrearObjetoDeParametrosBusquedaJson(string titulo, string artista, string album, int anio, string genero)
+    public string CrearObjetoDeParametrosBusquedaJson(string titulo, string artista, string album, string anio, string genero)
     {
-        ParametrosBusqueda parametrosBusqueda = new ParametrosBusqueda(titulo, artista, album, anio, genero);
+        int? anioNumerico = int.TryParse(anio, out int valor) ? valor : null;
+        ParametrosBusqueda parametrosBusqueda = new ParametrosBusqueda(titulo, artista, album, anioNumerico, genero);
         return JsonSerializer.Serialize(parametrosBusqueda);
     }
 
