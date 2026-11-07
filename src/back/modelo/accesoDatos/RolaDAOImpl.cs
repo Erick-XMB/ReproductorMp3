@@ -143,7 +143,7 @@ public class RolaDAOImpl : RolaDAO
                         FROM rolas r
                         LEFT JOIN performers p ON p.id_performer = r.id_performer
                         LEFT JOIN albums a ON a.id_album = r.id_album
-                        WHERE r.title LIKE $palabra";
+                        WHERE r.title LIKE $palabra OR a.name LIKE $palabra OR p.name LIKE $palabra OR r.genre LIKE $palabra OR r.year LIKE $palabra";
 
         using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$palabra", "%" + palabra + "%");
