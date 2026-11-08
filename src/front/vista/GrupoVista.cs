@@ -11,4 +11,25 @@ public class GrupoVista
         Group group = new Group(nombre, fechaInicio, fechaTermino);
         grupoControlador.agregarGrupo(group);
     }
+
+    public void AgregarIntegranteAGrupo(int id_person, int id_group)
+    {
+        grupoControlador.AgregarIntegrante(id_person, id_group);
+    }
+
+    public string ObtenerGruposJson()
+    {
+        List<Group> grupos = grupoControlador.ObtenerTodosLosGrupos();
+        var filas = new List<object>();
+
+        foreach (Group grupo in grupos)
+        {
+            filas.Add(new
+            {
+                id = grupo.IdGroup,
+                nombre = grupo.Name
+            });
+        }
+        return JsonSerializer.Serialize(filas);
+    }
 }

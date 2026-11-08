@@ -22,4 +22,9 @@ public class PersonaControlador
         personDAO.CreatePerson(person);
     }
 
+    public List<Person> ObtenerTodasLasPersonas()
+    {
+        return personDAO.ObtenerTodasLasPersonas();
+    }
+
 }

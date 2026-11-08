@@ -11,4 +11,20 @@ public class PersonaVista
         Person persona = new Person(nombreReal, nombreArtistico, fechaNacimiento, fechaFallecimiento);
         controladorPersona.agregarPersona(persona);
     }
+
+    public string ObtenerPersonasJson()
+    {
+        List<Person> personas = controladorPersona.ObtenerTodasLasPersonas();
+        var filas = new List<object>();
+
+        foreach (Person persona in personas)
+        {
+            filas.Add(new
+            {
+                id = persona.IdPerson,
+                nombre = persona.StageName
+            });
+        }
+        return JsonSerializer.Serialize(filas);
+    }
 }

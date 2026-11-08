@@ -77,6 +77,34 @@ public class PersonDAOImpl : PersonDAO
         return null!;
     }
 
+    public List<Person> ObtenerTodasLasPersonas()
+    {
+        List<Person> personas = new List<Person>();
+
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"SELECT id_person, stage_name, real_name, birth_date, death_date FROM persons ORDER BY stage_name";
+
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteDataReader lector = command.ExecuteReader();
+
+        while (lector.Read())
+        {
+            Person person = new Person(
+                Convert.ToInt32(lector["id_person"]),
+                lector["stage_name"].ToString()!,
+                lector["real_name"].ToString()!,
+                lector["birth_date"].ToString()!,
+                lector["death_date"].ToString()!
+            );
+
+            personas.Add(person);
+        }
+
+        return personas;
+    }
+
     /// <summary>
     /// Metodo que actualiza una persona de la base de datos
     /// </summary>

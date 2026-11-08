@@ -76,6 +76,47 @@ public class GroupDAOImpl : GroupDAO
         return null!;
     }
 
+    public List<Group> ObtenerTodoLosGrupos()
+    {
+        List<Group> grupos = new List<Group>();
+
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"SELECT id_group, name, start_date, end_date FROM groups ORDER BY name";
+
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteDataReader lector = command.ExecuteReader();
+
+        while (lector.Read())
+        {
+            Group group = new Group(
+                Convert.ToInt32(lector["id_group"]),
+                lector["name"].ToString()!,
+                lector["start_date"].ToString()!,
+                lector["end_date"].ToString()!
+            );
+
+            grupos.Add(group);
+        }
+
+        return grupos;
+    }
+
+    public void AgregarIntegrante(int id_person, int id_group)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"INSERT OR IGNORE INTO in_group (id_person, id_group) VALUES ($id_person, $id_group);";
+
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        command.Parameters.AddWithValue("$id_person", id_person);
+        command.Parameters.AddWithValue("$id_group", id_group);
+        
+        command.ExecuteNonQuery();
+    }
+
     /// <summary>
     /// Metodo para actualizar un grupo de la base de datos
     /// </summary>

@@ -30,5 +30,7 @@ public interface PersonDAO
     /// </summary>
     /// <param name="id_person"></param>
     public void DeletePerson(int id_person);
+
+    public List<Person> ObtenerTodasLasPersonas();
     
 }   

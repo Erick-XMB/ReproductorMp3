@@ -19,6 +19,10 @@ public interface GroupDAO
     /// <returns> el grupo que queriamos recuperar </returns>
     public Group GetGroup(int id_group);
 
+    public List<Group> ObtenerTodoLosGrupos();
+
+    public void AgregarIntegrante(int id_person, int id_group);
+
     /// <summary>
     /// Metodo para actualizar un grupo de la base de datos
     /// </summary>

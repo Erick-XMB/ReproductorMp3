@@ -22,4 +22,15 @@ public class GrupoControlador
         groupDAO.CreateGroup(group);
     }
 
+    public List<Group> ObtenerTodosLosGrupos()
+    {
+        return groupDAO.ObtenerTodoLosGrupos();
+    }
+
+    public void AgregarIntegrante(int id_person, int id_group)
+    {
+        groupDAO.AgregarIntegrante(id_person, id_group);
+    }
+
+
 }
