@@ -68,5 +68,18 @@ public class Group
         this.end_date = end_date;
     }
 
+    /// <summary>
+    /// Constructor de la clase grupo
+    /// </summary>
+    /// <param name="name"> representa el nombre del grupo </param>
+    /// <param name="start_date"> representa la fecha de inicio del grupo </param>
+    /// <param name="end_date"> representa la fecha de termino del grupo </param>
+    public Group(string name, string start_date, string end_date)
+    {
+        this.name = name;
+        this.start_date = start_date;
+        this.end_date = end_date;
+    }
+
 
 }

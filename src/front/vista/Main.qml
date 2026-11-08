@@ -33,6 +33,14 @@ import QtMultimedia
         id: rolasVista
     }
 
+    PersonaVista{
+        id: personaVista
+    }
+    
+    GrupoVista{
+        id: grupoVista
+    }
+
     MediaPlayer{
         id: reproductor
         audioOutput: AudioOutput { }
@@ -590,6 +598,11 @@ import QtMultimedia
                             radius: 6
                             color: botonCancelar.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
                         }
+
+                        onClicked:{
+                            ventanaAgregarPersonaAGrupo.show()
+                            ventanaNuevoInterprete.close()
+                        }
                     }
 
 
@@ -713,11 +726,16 @@ import QtMultimedia
                         Button {
                             id: botonCancelarNuevaPersona
                             text: "Cancelar"
+                            onClicked: ventanaAgregarNuevaPersona.close()
                         }
 
                         Button {
                             id: botonAceptarNuevaPersona
                             text: "Aceptar"
+                            onClicked: {
+                                personaVista.agregarObjetoPersona(textoNombreReal.text, textoNombreArtistico.text, textoFechaNacimiento.text, textoFechaMuerte.text)
+                                ventanaAgregarNuevaPersona.close()
+                            }
                         }
                     }
 
@@ -830,11 +848,16 @@ import QtMultimedia
                        Button {
                            id: botonCancelarNuevoGrupo
                            text: "Cancelar"
+                           onClicked: ventanaAgregarNuevaGrupo.close()
                        }
 
                        Button {
                            id: botonAceptarNuevoGrupo
                            text: "Aceptar"
+                           onClicked: {
+                                grupoVista.agregarObjetoGrupo(textoNombreGrupo.text, textoFechaInicio.text, textoFechaTermino.text)
+                                ventanaAgregarNuevaGrupo.close()
+                           }
                        }
                    }
 

@@ -86,4 +86,19 @@ public class Person
         this.birth_date = birth_date;
         this.death_date = death_date;
     }
+
+        /// <summary>
+    /// Constructor de la clase Person
+    /// </summary>
+    /// <param name="stage_name"> representa el nombre artistico de la persona </param>
+    /// <param name="real_name"> representa el nombre real de la persona </param>
+    /// <param name="birth_date"> representa la fecha  de nacimiento de la persona </param>
+    /// <param name="death_date"> representa la fecha de muerte de la persona </param>
+    public Person(string stage_name, string real_name, string birth_date, string death_date)
+    {
+        this.stage_name = stage_name;
+        this.real_name = real_name;
+        this.birth_date = birth_date;
+        this.death_date = death_date;
+    }
 }

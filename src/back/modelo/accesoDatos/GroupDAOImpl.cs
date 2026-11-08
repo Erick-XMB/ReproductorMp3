@@ -32,7 +32,7 @@ public class GroupDAOImpl : GroupDAO
         SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
-        String sql = @"INSERT INTO groups (id_group, name, start_date, end_date) VALUES ($id_group, $name, $start_date, $end_date);";
+        String sql = @"INSERT INTO groups (name, start_date, end_date) VALUES ($name, $start_date, $end_date);";
 
         SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 

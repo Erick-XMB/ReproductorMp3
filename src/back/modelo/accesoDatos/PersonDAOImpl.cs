@@ -32,11 +32,10 @@ public class PersonDAOImpl : PersonDAO
         SqliteConnection conexionAbierta = conexion.CrearConexion();
         conexionAbierta.Open();
 
-        String sql = @"INSERT INTO persons (id_person, stage_name, real_name, birth_date, death_name) VALUES ($id_person, $stage_name, $real_name, $birth_date, $death_date);";
+        String sql = @"INSERT INTO persons (stage_name, real_name, birth_date, death_date) VALUES ($stage_name, $real_name, $birth_date, $death_date);";
 
         SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
-        command.Parameters.AddWithValue("$id_person", person.IdPerson);
         command.Parameters.AddWithValue("$stage_name", person.StageName);
         command.Parameters.AddWithValue("$real_name", person.RealName);
         command.Parameters.AddWithValue("birth_date", person.BirthDate);
