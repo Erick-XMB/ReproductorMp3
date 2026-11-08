@@ -128,6 +128,8 @@ import QtMultimedia
                     width: 35
                     height: 34
                     text: "\u26cf"
+                    anchors.left: parent.left
+                    anchors.margins: 10
                     onClicked: dialogoCarpeta.open()
 
                     background: Rectangle {
@@ -153,12 +155,31 @@ import QtMultimedia
                     y: 6
                     width: 35
                     height: 34
+                    anchors.left: botonMinero.right
+                    anchors.leftMargin: 7
                     text: "\u23da"
                     background: Rectangle {
                         color: buscadorFiltrar.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
                         radius: 6
                     }
                     onClicked: ventanaBuscar.show()
+                }
+
+                Button {
+                    id: botonPerformer
+                    x: 90
+                    y: 6
+                    width: 35
+                    height: 34
+                    anchors.left: buscadorFiltrar.right
+                    anchors.leftMargin: 7
+                    text: "🎙"
+                    background: Rectangle {
+                        color: botonPerformer.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        radius: 6
+                    }
+
+                    onClicked: ventanaNuevoInterprete.show()
                 }
             }
 
@@ -365,27 +386,152 @@ import QtMultimedia
         color: "#121212"
         visible: false
 
-        ColumnLayout {
-        id: columnLayoutVentanaBuscar
+         ColumnLayout {
+         id: columnLayoutVentanaBuscar
+         anchors.fill: parent
+         spacing: 0
+
+         Rectangle {
+             id: encabezado
+             color: "#4a9272"
+             Layout.fillWidth: true
+             Layout.preferredHeight: 36
+
+             Label {
+                 id: label
+                 anchors.centerIn: parent
+                 text: "Busqueda avanzada"
+                 font.bold: true
+                }
+            }
+
+         Rectangle {
+             id: rectangleVentanaBuscar
+             color: "#181818"
+             Layout.fillHeight: true
+             Layout.fillWidth: true
+
+             ColumnLayout{
+                 anchors.fill:  parent
+                 anchors.margins: 16
+                 spacing: 12
+
+
+                 GridLayout {
+                     id: gridLayout
+                     Layout.fillWidth: true
+                     columns: 2
+                     columnSpacing: 16
+                     rowSpacing: 8
+
+                     Switch {
+                         id: switchTitulo
+                         text: "Titulo"
+                     }
+
+                     TextField {
+                         id: textoTitulo
+                         Layout.fillWidth: true
+                         placeholderText: qsTr("Ingresar titulo...")
+                         enabled: switchTitulo.checked
+                     }
+
+                     Switch {
+                         id: switchArtista
+                         text: "Artista"
+                     }
+
+                     TextField {
+                         id: textoArtista
+                         Layout.fillWidth: true
+                         placeholderText: qsTr("Ingresar artista...")
+                         enabled: switchArtista.checked
+                     }
+
+                     Switch {
+                         id: switchAlbum
+                         text: "Album"
+                     }
+
+                     TextField {
+                         id: textoAlbum
+                         Layout.fillWidth: true
+                         placeholderText: qsTr("Ingresar album...")
+                         enabled: switchAlbum.checked
+                     }
+
+                     Switch {
+                         id: switchAño
+                         text: "Año"
+                     }
+
+                     TextField {
+                         id: textoAño
+                         Layout.fillWidth: true
+                         placeholderText: qsTr("Ingresar año...")
+                         enabled: switchAño.checked
+                     }
+
+                     Switch {
+                         id: switchGenero
+                         text: "Género"
+                     }
+
+                     TextField {
+                         id: textoGenero
+                         Layout.fillWidth: true
+                         placeholderText: qsTr("Ingresar genero...")
+                         enabled: switchGenero.checked
+                     }
+
+                     Button {
+                         id: botonCancelar
+                         text: "Cancelar"
+                         onClicked: ventanaBuscar.close()
+                     }
+
+                     Button {
+                         id: botonAceptar
+                         text: "Aceptar"
+                         onClicked: {
+                             cargarRolasPorBusquedaAvanzada(textoTitulo.text, textoArtista.text, textoAlbum.text, textoAño.text, textoGenero.text)
+                             ventanaBuscar.close()
+                            }
+                        }
+                    }
+                }
+            }
+        }   
+    }
+
+    Window {
+    id: ventanaNuevoInterprete
+    title: "Nuevo Interprete"
+    width: 400
+    height: 175
+    color: "#121212"
+
+    ColumnLayout {
+        id: columnLayoutInterprete
         anchors.fill: parent
         spacing: 0
 
         Rectangle {
-            id: encabezado
+            id: encabezadoInterprete
             color: "#4a9272"
             Layout.fillWidth: true
             Layout.preferredHeight: 36
 
             Label {
-                id: label
+                id: labelInterprete
                 anchors.centerIn: parent
-                text: "Busqueda avanzada"
+                text: "Agregar un nuevo interprete"
                 font.bold: true
             }
         }
 
         Rectangle {
-            id: rectangleVentanaBuscar
+            id: rectangle1Interprete
             color: "#181818"
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -397,84 +543,181 @@ import QtMultimedia
 
 
                 GridLayout {
-                    id: gridLayout
+                    id: gridLayoutInterprete
+                    Layout.fillWidth: true
+                    columns: 1
+                    columnSpacing: 16
+                    rowSpacing: 8
+
+                    Button {
+                        id: buttonAgregarPerson
+                        text: "Agregar una nueva persona"
+                        Layout.fillWidth: true
+
+                        background: Rectangle {
+                            radius: 6
+                            color: buttonAgregarPerson.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        }
+
+                        onClicked: {
+                            ventanaAgregarNuevaPersona.show()
+                            ventanaNuevoInterprete.close()
+                            }
+                    }
+
+                    Button {
+                        id: buttonAgregarGrupo
+                        text: qsTr("Agregar un nuevo grupo")
+                        Layout.fillWidth: true
+
+                        background: Rectangle {
+                            radius: 6
+                            color: buttonAgregarGrupo.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        }
+
+                        onClicked: {
+                            ventanaAgregarNuevaGrupo.show()
+                            ventanaNuevoInterprete.close()
+                        }
+                    }
+
+                    Button {
+                        id: botonAgregarPersonaAGrupo
+                        text: "Agregar un nuevo integrante a un grupo"
+                        Layout.fillWidth: true
+
+                        background: Rectangle {
+                            radius: 6
+                            color: botonCancelar.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        }
+                    }
+
+
+                }
+            }
+        }
+    }
+  }
+
+  Window {
+    id: ventanaAgregarNuevaPersona
+    title: "Agregar persona"
+    width: 450
+    height: 480
+    color: "#121212"
+
+    ColumnLayout {
+        id: columnLayoutNuevaPersona
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            id: encabezadoAgregarPersona
+            color: "#4a9272"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 36
+
+            Label {
+                id: labelAgregarPersona
+                anchors.centerIn: parent
+                text: "Agregar nueva persona"
+                font.bold: true
+            }
+        }
+
+        Rectangle {
+            id: rectangle1Persona
+            color: "#181818"
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+            ColumnLayout{
+                anchors.fill:  parent
+                anchors.margins: 16
+                spacing: 12
+
+                Rectangle {
+                    id: rectanglePersona
+                    Layout.preferredWidth: 150
+                    Layout.preferredHeight: 150
+                    Layout.alignment: Qt.AlignHCenter
+                    color: "#282828"
+                    clip: true
+
+                    Text{
+                        text: "👤"
+                        font.pixelSize: 130
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottom: parent.bottom
+                        anchors.bottomMargin: -20
+                    }
+                }
+
+
+                GridLayout {
+                    id: gridLayoutPersona
                     Layout.fillWidth: true
                     columns: 2
                     columnSpacing: 16
                     rowSpacing: 8
 
-                    Switch {
-                        id: switchTitulo
-                        text: "Titulo"
+                    Label {
+                        id: labelNombreReal
+                        text: "Nombre real*"
                     }
 
                     TextField {
-                        id: textoTitulo
+                        id: textoNombreReal
                         Layout.fillWidth: true
-                        placeholderText: qsTr("Ingresar titulo...")
-                        enabled: switchTitulo.checked
+                        placeholderText: qsTr("Ingresar nombre real...")
                     }
 
-                    Switch {
-                        id: switchArtista
-                        text: "Artista"
+                    Label {
+                        id: labelNombreArtistico
+                        text: "Nombre artistico*"
                     }
 
                     TextField {
-                        id: textoArtista
+                        id: textoNombreArtistico
                         Layout.fillWidth: true
-                        placeholderText: qsTr("Ingresar artista...")
-                        enabled: switchArtista.checked
+                        placeholderText: qsTr("Ingresar nombre artistico...")
                     }
 
-                    Switch {
-                        id: switchAlbum
-                        text: "Album"
+                    Label {
+                        id: labelFechaNacimiento
+                        text: "Fecha de Nacimiento*"
                     }
 
                     TextField {
-                        id: textoAlbum
+                        id: textoFechaNacimiento
                         Layout.fillWidth: true
-                        placeholderText: qsTr("Ingresar album...")
-                        enabled: switchAlbum.checked
+                        placeholderText: qsTr("Ingresar fecha de nacimiento...")
                     }
 
-                    Switch {
-                        id: switchAño
-                        text: "Año"
+                    Label {
+                        id: labelFechaMuerte
+                        text: "Fecha de muerte"
                     }
 
                     TextField {
-                        id: textoAño
+                        id: textoFechaMuerte
                         Layout.fillWidth: true
-                        placeholderText: qsTr("Ingresar año...")
-                        enabled: switchAño.checked
+                        placeholderText: qsTr("Ingresar fecha de muerte...")
                     }
 
-                    Switch {
-                        id: switchGenero
-                        text: "Género"
-                    }
+                    RowLayout {
+                        Layout.columnSpan: 2            
+                        Layout.alignment: Qt.AlignRight 
+                        spacing: 6
 
-                    TextField {
-                        id: textoGenero
-                        Layout.fillWidth: true
-                        placeholderText: qsTr("Ingresar genero...")
-                        enabled: switchGenero.checked
-                    }
+                        Button {
+                            id: botonCancelarNuevaPersona
+                            text: "Cancelar"
+                        }
 
-                    Button {
-                        id: botonCancelar
-                        text: "Cancelar"
-                        onClicked: ventanaBuscar.close()
-                    }
-
-                    Button {
-                        id: botonAceptar
-                        text: "Aceptar"
-                        onClicked: {
-                            cargarRolasPorBusquedaAvanzada(textoTitulo.text, textoArtista.text, textoAlbum.text, textoAño.text, textoGenero.text)
-                            ventanaBuscar.close()
+                        Button {
+                            id: botonAceptarNuevaPersona
+                            text: "Aceptar"
                         }
                     }
 
@@ -482,7 +725,122 @@ import QtMultimedia
             }
         }
     }
+   }
 
-    }
+   Window {
+   id: ventanaAgregarNuevaGrupo
+   title: "Nuevo grupo"
+   width: 450
+   height: 480
+   color: "#121212"
 
+   ColumnLayout {
+       id: columnLayoutNuevoGrupo
+       anchors.fill: parent
+       spacing: 0
+
+       Rectangle {
+           id: encabezadoAgregarGrupo
+           color: "#4a9272"
+           Layout.fillWidth: true
+           Layout.preferredHeight: 36
+
+           Label {
+               id: labelAgregarGrupo
+               anchors.centerIn: parent
+               text: "Agregar nuevo grupo"
+               font.bold: true
+           }
+       }
+
+       Rectangle {
+           id: rectangle1Grupo
+           color: "#181818"
+           Layout.fillHeight: true
+           Layout.fillWidth: true
+
+           ColumnLayout{
+               anchors.fill:  parent
+               anchors.margins: 16
+               spacing: 12
+
+               Rectangle {
+                   id: rectangleGrupo
+                   Layout.preferredWidth: 150
+                   Layout.preferredHeight: 150
+                   Layout.alignment: Qt.AlignHCenter
+                   color: "#282828"
+                   clip: true
+
+                   Text{
+                       text: "👥"
+                       font.pixelSize: 130
+                       anchors.horizontalCenter: parent.horizontalCenter
+                       anchors.bottom: parent.bottom
+                       anchors.bottomMargin: -20
+                   }
+               }
+
+
+               GridLayout {
+                   id: gridLayoutGrupo
+                   Layout.fillWidth: true
+                   columns: 2
+                   columnSpacing: 16
+                   rowSpacing: 8
+
+                   Label {
+                       id: labelNombreGrupo
+                       text: "Nombre*"
+                   }
+
+                   TextField {
+                       id: textoNombreGrupo
+                       Layout.fillWidth: true
+                       placeholderText: qsTr("Ingresar nombre...")
+                   }
+
+                   Label {
+                       id: labelFechaInicio
+                       text: "Fecha de inicio*"
+                   }
+
+                   TextField {
+                       id: textoFechaInicio
+                       Layout.fillWidth: true
+                       placeholderText: qsTr("Ingresar fecha de inicio...")
+                   }
+
+                   Label {
+                       id: labelFechaTermino
+                       text: "Fecha de término"
+                   }
+
+                   TextField {
+                       id: textoFechaTermino
+                       Layout.fillWidth: true
+                       placeholderText: qsTr("Ingresar fecha de término...")
+                   }
+
+                   RowLayout {
+                       Layout.columnSpan: 2
+                       Layout.alignment: Qt.AlignRight
+                       spacing: 6
+
+                       Button {
+                           id: botonCancelarNuevoGrupo
+                           text: "Cancelar"
+                       }
+
+                       Button {
+                           id: botonAceptarNuevoGrupo
+                           text: "Aceptar"
+                       }
+                   }
+
+               }
+           }
+       }
+   }
+}
 }
