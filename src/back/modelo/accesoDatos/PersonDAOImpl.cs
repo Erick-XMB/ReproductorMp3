@@ -27,21 +27,34 @@ public class PersonDAOImpl : PersonDAO
     /// Metodo que ingresa una persona a la base de datos
     /// </summary>
     /// <param name="person">< es la persona que queremos ingresar /param>
-    public void CreatePerson(Person person)
+    public bool CreatePerson(Person person)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
-        conexionAbierta.Open();
+        if (string.IsNullOrWhiteSpace(person.RealName) || string.IsNullOrWhiteSpace(person.BirthDate) || string.IsNullOrWhiteSpace(person.StageName))
+        {
+            return false;
+        }
 
-        String sql = @"INSERT INTO persons (stage_name, real_name, birth_date, death_date) VALUES ($stage_name, $real_name, $birth_date, $death_date);";
+        try
+        {
+            using SqliteConnection conexionAbierta = conexion.CrearConexion();
+            conexionAbierta.Open();
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+            String sql = @"INSERT INTO persons (stage_name, real_name, birth_date, death_date) VALUES ($stage_name, $real_name, $birth_date, $death_date);";
 
-        command.Parameters.AddWithValue("$stage_name", person.StageName);
-        command.Parameters.AddWithValue("$real_name", person.RealName);
-        command.Parameters.AddWithValue("birth_date", person.BirthDate);
-        command.Parameters.AddWithValue("death_date", person.DeathDate);
+            using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
-        command.ExecuteNonQuery();
+            command.Parameters.AddWithValue("$stage_name", person.StageName);
+            command.Parameters.AddWithValue("$real_name", person.RealName);
+            command.Parameters.AddWithValue("$birth_date", person.BirthDate);
+            command.Parameters.AddWithValue("$death_date", person.DeathDate);
+
+            command.ExecuteNonQuery();
+            return true;
+        }
+        catch (SqliteException)
+        {
+            return false;
+        }
     }
 
     /// <summary>

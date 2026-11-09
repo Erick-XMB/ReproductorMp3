@@ -13,6 +13,14 @@ Window {
    height: 450
    color: "#121212"
 
+    function cargarTodasPersonas(){
+        comboNombreDePersona.model = JSON.parse(personaVista.obtenerPersonasJson())
+    }
+
+    function cargarTodosGrupos(){
+        comboNombreDeGrupo.model = JSON.parse(grupoVista.obtenerGruposJson())
+    }
+
    onVisibleChanged: {
        if (visible) cargarTodasPersonas()
        if (visible) cargarTodosGrupos()
@@ -156,8 +164,14 @@ Window {
                        id: botonAceptarPersonaGrupo
                        text: qsTr("Aceptar")
                        onClicked: {
-                            grupoVista.agregarIntegranteAGrupo(comboNombreDePersona.currentValue, comboNombreDeGrupo.currentValue)
+                            var operacionAgregarIntegranteAGrupoExitosa= grupoVista.agregarIntegranteAGrupo(comboNombreDePersona.currentValue, comboNombreDeGrupo.currentValue)
                             ventanaAgregarPersonaAGrupo.close()
+
+                            if(operacionAgregarIntegranteAGrupoExitosa){
+                                ventanaOperacionExitosa.show()
+                            } else {
+                                ventanaOperacionFallida.show()
+                            }
                        }
                    }
                }

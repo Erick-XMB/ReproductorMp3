@@ -10,7 +10,7 @@ public interface GroupDAO
     /// Metodo que inserta un grupo a la base de datos
     /// </summary>
     /// <param name="group"> es el grupo que se desea insertar </param>
-    public void CreateGroup(Group group);
+    public bool CreateGroup(Group group);
 
     /// <summary>
     /// Metodo para obtener un grupo de la base de datos
@@ -31,7 +31,7 @@ public interface GroupDAO
     /// </summary>
     /// <param name="id_person"> es el id de la persona que queremos agregar a un grupo </param>
     /// <param name="id_group"> es el id del grupo al cual queremos agregar un integrante </param>
-    public void AgregarIntegrante(int id_person, int id_group);
+    public bool AgregarIntegrante(int id_person, int id_group);
 
     /// <summary>
     /// Metodo para actualizar un grupo de la base de datos

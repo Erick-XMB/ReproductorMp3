@@ -19,10 +19,10 @@ public class PersonaVista
     /// <param name="nombreArtistico"> es el nombre artistico de la persona </param>
     /// <param name="fechaNacimiento"> es la fehca de nacimiento de la persona </param>
     /// <param name="fechaFallecimiento"> es la fecha de nacimiento de la persona </param>
-    public void AgregarObjetoPersona(string nombreReal, string nombreArtistico, string fechaNacimiento, string fechaFallecimiento)
+    public bool AgregarObjetoPersona(string nombreReal, string nombreArtistico, string fechaNacimiento, string fechaFallecimiento)
     {
         Person persona = new Person(nombreReal, nombreArtistico, fechaNacimiento, fechaFallecimiento);
-        controladorPersona.agregarPersona(persona);
+        return controladorPersona.agregarPersona(persona);
     }
 
     /// <summary>

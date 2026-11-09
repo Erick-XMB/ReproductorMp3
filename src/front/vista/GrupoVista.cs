@@ -18,10 +18,10 @@ public class GrupoVista
     /// <param name="nombre"> es el nombre del grupo </param>
     /// <param name="fechaInicio"> es la fecha de inicio del grupo </param>
     /// <param name="fechaTermino"> es la fehca de termino del grupo </param>
-    public void AgregarObjetoGrupo(string nombre, string fechaInicio, string fechaTermino)
+    public bool AgregarObjetoGrupo(string nombre, string fechaInicio, string fechaTermino)
     {
         Group group = new Group(nombre, fechaInicio, fechaTermino);
-        grupoControlador.agregarGrupo(group);
+        return grupoControlador.agregarGrupo(group);
     }
 
     /// <summary>
@@ -29,9 +29,9 @@ public class GrupoVista
     /// </summary>
     /// <param name="id_person" es el identificador de la persona ></param>
     /// <param name="id_group"> es el identificador del grupo </param>
-    public void AgregarIntegranteAGrupo(int id_person, int id_group)
+    public bool AgregarIntegranteAGrupo(int id_person, int id_group)
     {
-        grupoControlador.AgregarIntegrante(id_person, id_group);
+        return grupoControlador.AgregarIntegrante(id_person, id_group);
     }
 
     /// <summary>

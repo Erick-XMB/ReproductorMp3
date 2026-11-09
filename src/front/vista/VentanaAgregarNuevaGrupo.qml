@@ -116,8 +116,20 @@ Window {
                            id: botonAceptarNuevoGrupo
                            text: "Aceptar"
                            onClicked: {
-                                grupoVista.agregarObjetoGrupo(textoNombreGrupo.text, textoFechaInicio.text, textoFechaTermino.text)
+                                var guardarGrupoExitoso = grupoVista.agregarObjetoGrupo(textoNombreGrupo.text, textoFechaInicio.text, textoFechaTermino.text)
                                 ventanaAgregarNuevaGrupo.close()
+
+                                if(guardarGrupoExitoso){
+                                    ventanaOperacionExitosa.show()
+                                    textoNombreGrupo.clear()
+                                    textoFechaInicio.clear()
+                                    textoFechaTermino.clear()
+                                } else {
+                                    ventanaOperacionFallida.show()
+                                    textoNombreGrupo.clear()
+                                    textoFechaInicio.clear()
+                                    textoFechaTermino.clear()
+                                }
                            }
                        }
                    }

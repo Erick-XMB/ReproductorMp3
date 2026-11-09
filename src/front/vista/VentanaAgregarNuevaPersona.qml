@@ -98,7 +98,7 @@ import QtMultimedia
                     TextField {
                         id: textoFechaNacimiento
                         Layout.fillWidth: true
-                        placeholderText: qsTr("Ingresar fecha de nacimiento...")
+                        placeholderText: qsTr("dd/mm/yyyy")
                     }
 
                     Label {
@@ -109,7 +109,7 @@ import QtMultimedia
                     TextField {
                         id: textoFechaMuerte
                         Layout.fillWidth: true
-                        placeholderText: qsTr("Ingresar fecha de muerte...")
+                        placeholderText: qsTr("dd/mm/yyyy")
                     }
 
                     RowLayout {
@@ -127,12 +127,25 @@ import QtMultimedia
                             id: botonAceptarNuevaPersona
                             text: "Aceptar"
                             onClicked: {
-                                personaVista.agregarObjetoPersona(textoNombreReal.text, textoNombreArtistico.text, textoFechaNacimiento.text, textoFechaMuerte.text)
+                                var operacionExitosa = personaVista.agregarObjetoPersona(textoNombreReal.text, textoNombreArtistico.text, textoFechaNacimiento.text, textoFechaMuerte.text)
                                 ventanaAgregarNuevaPersona.close()
+
+                                if(operacionExitosa){
+                                    ventanaOperacionExitosa.show()
+                                    textoNombreReal.clear()
+                                    textoNombreArtistico.clear()
+                                    textoFechaNacimiento.clear()
+                                    textoFechaMuerte.clear()
+                                } else{
+                                    ventanaOperacionFallida.show()
+                                    textoNombreReal.clear()
+                                    textoNombreArtistico.clear()
+                                    textoFechaNacimiento.clear()
+                                    textoFechaMuerte.clear()
+                                }
                             }
                         }
                     }
-
                 }
             }
         }

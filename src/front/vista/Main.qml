@@ -62,6 +62,18 @@ ApplicationWindow {
         id: ventanaAgregarNuevaGrupo
     }
 
+    VentanaOperacionExitosa{
+        id: ventanaOperacionExitosa
+    }
+
+    VentanaOperacionFallida{
+        id:  ventanaOperacionFallida
+    }
+
+    VentanaAgregarPersonaAGrupo{
+        id: ventanaAgregarPersonaAGrupo
+    }
+
     function cargarRolasAlMinar(){
         myModel.clear()
         var filas = JSON.parse(rolasVista.obtenerRolasJson())
@@ -71,13 +83,7 @@ ApplicationWindow {
         }
     }
 
-    function cargarTodasPersonas(){
-        comboNombreDePersona.model = JSON.parse(personaVista.obtenerPersonasJson())
-    }
 
-    function cargarTodosGrupos(){
-        comboNombreDeGrupo.model = JSON.parse(grupoVista.obtenerGruposJson())
-    }
 
     function cargarRolasPorPalabra(palabra){
         myModel.clear()

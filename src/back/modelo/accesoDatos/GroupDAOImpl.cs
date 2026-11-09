@@ -27,21 +27,35 @@ public class GroupDAOImpl : GroupDAO
     /// Metodo que inserta un grupo a la base de datos
     /// </summary>
     /// <param name="group"> es el grupo que se desea insertar </param>
-    public void CreateGroup(Group group)
+    public bool CreateGroup(Group group)
     {
-        SqliteConnection conexionAbierta = conexion.CrearConexion();
-        conexionAbierta.Open();
+        if (string.IsNullOrWhiteSpace(group.Name) || string.IsNullOrWhiteSpace(group.StartDate))
+        {
+            return false;
+        }
 
-        String sql = @"INSERT INTO groups (name, start_date, end_date) VALUES ($name, $start_date, $end_date);";
+        try
+        {
+            using SqliteConnection conexionAbierta = conexion.CrearConexion();
+            conexionAbierta.Open();
 
-        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+            String sql = @"INSERT INTO groups (name, start_date, end_date) VALUES ($name, $start_date, $end_date);";
 
-        command.Parameters.AddWithValue("$id_group", group.IdGroup);
-        command.Parameters.AddWithValue("$name", group.Name);
-        command.Parameters.AddWithValue("$start_date", group.StartDate);
-        command.Parameters.AddWithValue("end_date", group.EndDate);
+            using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
 
-        command.ExecuteNonQuery();
+            command.Parameters.AddWithValue("$id_group", group.IdGroup);
+            command.Parameters.AddWithValue("$name", group.Name);
+            command.Parameters.AddWithValue("$start_date", group.StartDate);
+            command.Parameters.AddWithValue("end_date", group.EndDate);
+
+            command.ExecuteNonQuery();
+
+            return true;
+        }
+        catch (SqliteException)
+        {
+            return false;
+        }
     }
 
     /// <summary>
@@ -113,18 +127,26 @@ public class GroupDAOImpl : GroupDAO
     /// </summary>
     /// <param name="id_person"> es el id de la persona que queremos agregar a un grupo </param>
     /// <param name="id_group"> es el id del grupo al cual queremos agregar un integrante </param>
-    public void AgregarIntegrante(int id_person, int id_group)
+    public bool AgregarIntegrante(int id_person, int id_group)
     {
-        using SqliteConnection conexionAbierta = conexion.CrearConexion();
-        conexionAbierta.Open();
+        try
+        {
+            using SqliteConnection conexionAbierta = conexion.CrearConexion();
+            conexionAbierta.Open();
 
-        string sql = @"INSERT OR IGNORE INTO in_group (id_person, id_group) VALUES ($id_person, $id_group);";
+            string sql = @"INSERT OR IGNORE INTO in_group (id_person, id_group) VALUES ($id_person, $id_group);";
 
-        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
-        command.Parameters.AddWithValue("$id_person", id_person);
-        command.Parameters.AddWithValue("$id_group", id_group);
+            using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+            command.Parameters.AddWithValue("$id_person", id_person);
+            command.Parameters.AddWithValue("$id_group", id_group);
 
-        command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
+            return true;
+        }
+        catch (SqliteException)
+        {
+            return false;
+        }
     }
 
     /// <summary>

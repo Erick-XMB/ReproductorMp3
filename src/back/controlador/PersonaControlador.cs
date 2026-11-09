@@ -32,9 +32,9 @@ public class PersonaControlador
     /// Metodo que ingresa una persona a la base de datos
     /// </summary>
     /// <param name="person">< es la persona que queremos ingresar /param>
-    public void agregarPersona(Person person)
+    public bool agregarPersona(Person person)
     {
-        personDAO.CreatePerson(person);
+        return personDAO.CreatePerson(person);
     }
 
         /// <summary>

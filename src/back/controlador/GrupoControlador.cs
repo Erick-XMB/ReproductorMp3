@@ -32,9 +32,9 @@ public class GrupoControlador
     /// Metodo que inserta un grupo a la base de datos
     /// </summary>
     /// <param name="group"> es el grupo que se desea insertar </param>
-    public void agregarGrupo(Group group)
+    public bool agregarGrupo(Group group)
     {
-        groupDAO.CreateGroup(group);
+        return groupDAO.CreateGroup(group);
     }
 
     /// <summary>
@@ -52,9 +52,9 @@ public class GrupoControlador
     /// </summary>
     /// <param name="id_person"> es el id de la persona que queremos agregar a un grupo </param>
     /// <param name="id_group"> es el id del grupo al cual queremos agregar un integrante </param>
-    public void AgregarIntegrante(int id_person, int id_group)
+    public bool AgregarIntegrante(int id_person, int id_group)
     {
-        groupDAO.AgregarIntegrante(id_person, id_group);
+        return groupDAO.AgregarIntegrante(id_person, id_group);
     }
 
 
