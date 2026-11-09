@@ -87,7 +87,7 @@ public class Person
         this.death_date = death_date;
     }
 
-        /// <summary>
+    /// <summary>
     /// Constructor de la clase Person
     /// </summary>
     /// <param name="stage_name"> representa el nombre artistico de la persona </param>

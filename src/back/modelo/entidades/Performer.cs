@@ -11,7 +11,6 @@ public class Performer
     /// <summary>
     /// Metodo que obtiene o asigna el identificador del performer 
     /// </summary>
-    /// <value></value>
     public int IdPerformer
     {
         get { return id_performer; }
@@ -24,7 +23,6 @@ public class Performer
     /// <summary>
     /// Metodo que obtiene o asgigna el identificador del tipo de performer que es
     /// </summary>
-    /// <value></value>
     public int IdType
     {
         get { return id_type; }
@@ -37,7 +35,6 @@ public class Performer
     /// <summary>
     /// Metodo que obtiene o asigna el nombre del performer
     /// </summary>
-    /// <value></value>
     public string Name
     {
         get { return name; }

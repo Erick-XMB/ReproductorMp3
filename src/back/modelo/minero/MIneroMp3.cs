@@ -12,7 +12,7 @@ public class MineroMp3
 {
     /// <summary>
     /// Metodo que dada una cadena que reprsenta la ruta de un directorio
-    /// guarda la informacion de cada archivo del directorio en una lista de archivosMp3
+    /// guarda la informacion de cada archivo del directorio (y sus subdirectorios)en una lista de archivosMp3
     /// </summary>
     /// <param name="ruta"> representa el directorio del cual queremos 
     /// guardar sus archivos mp3 </param>
@@ -29,6 +29,13 @@ public class MineroMp3
         return archivosMp3;
     }
 
+
+    /// <summary>
+    /// Metodo que dada la ruta de un archivo .mp3 crea un objeto de tipo
+    /// DatosMp3, solamenre si tiene la etiqueta Id3v2
+    /// </summary>
+    /// <param name="ruta"> es la ruta del archivo .mp3 </param>
+    /// <returns> un objeto de tipo DatosMp3, null en caso de no tener la etiqueta requerida </returns> <summary>
     public DatosMp3? AnalizarArchivoMp3(string ruta)
     {
         var archivo = TagLib.File.Create(ruta);
@@ -42,10 +49,25 @@ public class MineroMp3
         return new DatosMp3(archivo.Tag.Track, archivo.Tag.Title, archivo.Tag.FirstPerformer, archivo.Tag.Album, archivo.Tag.Year, archivo.Tag.Genres, ruta, etiquetaId3.Version);
     }
 
+    /// <summary>
+    /// Metodo que verifica la version de la etiqueta Id3
+    /// </summary>
+    /// <param name="datos"> Objeto de tipo DatosMp3 del cual verificaremos su version de etiqueta </param>
+    /// <returns>true en caso de ser version 4, false en otro caso  </returns>
+
     public bool VerificarVersionId3(DatosMp3 datos)
     {
         return datos.VersionId3 == 4;
     }
+
+    /// <summary>
+    /// Metodo que dada una ruta, guardamos los archivos en una lista
+    /// Seguido a ello, recorremos la lista creando por cada archivo un objeto de tipo DatosMp3
+    /// Verificamos la version de cada objeto, y si corresponde a la requerida, lo guardamos 
+    /// en una lista de datos validos, llamada datosEncontrados
+    /// </summary>
+    /// <param name="ruta"> es la cadena que representa la ruta del directorio </param>
+    /// <returns> la lista de los objetos DatosMp3 valioos segun la especificacion </returns>
 
     public List<DatosMp3> MinarDirectorio(string ruta)
     {
@@ -67,6 +89,13 @@ public class MineroMp3
         return datosEncontrados;
     }
 
+    /// <summary>
+    /// Metodo que dada la ruta de un archivo .mp3 extrae la portada de sus metados, 
+    /// esto solo si el archivo contiene una imagen en sus etiquetas
+    /// </summary>
+    /// <param name="ruta"> es la ruta del archivo .mp3 </param>
+    /// <returns> un par ordenado con el tipo de la imagen y sus bytes, null en caso de 
+    /// no tener alguna imagen asociada o un error en la lectura </returns>
     public (string TipoImagen, byte[] Datos)? ObtenerPortada(string ruta)
     {
         try

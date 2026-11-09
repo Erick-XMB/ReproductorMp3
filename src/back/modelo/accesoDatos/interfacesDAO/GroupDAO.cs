@@ -19,8 +19,18 @@ public interface GroupDAO
     /// <returns> el grupo que queriamos recuperar </returns>
     public Group GetGroup(int id_group);
 
+    /// <summary>
+    /// Metodo que recupera todos los grupos que hay en la base de datos 
+    /// </summary>
+    /// <returns> una lista de grupo, con todos los grupos que hay en la base de datos</returns>
     public List<Group> ObtenerTodoLosGrupos();
 
+    /// <summary>
+    /// Metodo que conecta el id de una perosona, con el id de un grupo
+    /// para generar la relacion entre ambas entidades
+    /// </summary>
+    /// <param name="id_person"> es el id de la persona que queremos agregar a un grupo </param>
+    /// <param name="id_group"> es el id del grupo al cual queremos agregar un integrante </param>
     public void AgregarIntegrante(int id_person, int id_group);
 
     /// <summary>

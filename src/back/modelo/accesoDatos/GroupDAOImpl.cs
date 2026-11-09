@@ -76,6 +76,10 @@ public class GroupDAOImpl : GroupDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metodo que recupera todos los grupos que hay en la base de datos 
+    /// </summary>
+    /// <returns> una lista de grupo, con todos los grupos que hay en la base de datos</returns>
     public List<Group> ObtenerTodoLosGrupos()
     {
         List<Group> grupos = new List<Group>();
@@ -103,6 +107,12 @@ public class GroupDAOImpl : GroupDAO
         return grupos;
     }
 
+    /// <summary>
+    /// Metodo que conecta el id de una perosona, con el id de un grupo
+    /// para generar la relacion entre ambas entidades
+    /// </summary>
+    /// <param name="id_person"> es el id de la persona que queremos agregar a un grupo </param>
+    /// <param name="id_group"> es el id del grupo al cual queremos agregar un integrante </param>
     public void AgregarIntegrante(int id_person, int id_group)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -113,7 +123,7 @@ public class GroupDAOImpl : GroupDAO
         using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$id_person", id_person);
         command.Parameters.AddWithValue("$id_group", id_group);
-        
+
         command.ExecuteNonQuery();
     }
 

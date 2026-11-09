@@ -131,6 +131,13 @@ public class RolaDAOImpl : RolaDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metodo que recupera de la base de datos las rolas que cumplan
+    /// con los criterios indicados en los parametros
+    /// </summary>
+    /// <param name="parametrosBusqueda"> es el objeto que contiene los 
+    /// criterios de busqueda a aplicar </param>
+    /// <returns> una lista de las rolas que cumplen los criterios de busqueda </returns>
     public List<Rola> GetRolasPorBusquedaAvanzada(ParametrosBusqueda parametrosBusqueda)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
@@ -211,7 +218,12 @@ public class RolaDAOImpl : RolaDAO
         return rolas;
     }
 
-
+    /// <summary>
+    /// Metodo que recupera las rolas de la base de datos, que contengan
+    /// la palabra indicada como parametro
+    /// </summary>
+    /// <param name="palabra"> es la palabra a buscar en las rolas </param>
+    /// <returns> Una lista de las rolas que coinciden con la palabra dada </returns>
     public List<Rola> GetRolasPorPalabra(string palabra)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();

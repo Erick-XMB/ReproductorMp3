@@ -77,6 +77,10 @@ public class PersonDAOImpl : PersonDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metodo que recupera a todas las personas de la base de datos
+    /// </summary>
+    /// <returns> Una lista con todas las personas que hay en la base de datos </returns>
     public List<Person> ObtenerTodasLasPersonas()
     {
         List<Person> personas = new List<Person>();
