@@ -116,7 +116,17 @@ Window {
                            id: botonAceptarNuevoGrupo
                            text: "Aceptar"
                            onClicked: {
+
+                                var json = performerVista.buscarPerformerPorNombre(textoNombreGrupo.text)
+
+                                var performerGrupo = JSON.parse(json)
+
                                 var guardarGrupoExitoso = grupoVista.agregarObjetoGrupo(textoNombreGrupo.text, textoFechaInicio.text, textoFechaTermino.text)
+
+                                if(performerGrupo != null && guardarGrupoExitoso){
+                                    performerVista.actualizarTipoDelPerformer(performerGrupo.IdPerformer,  1)
+                                }
+
                                 ventanaAgregarNuevaGrupo.close()
 
                                 if(guardarGrupoExitoso){
