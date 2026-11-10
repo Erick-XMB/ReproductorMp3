@@ -28,7 +28,7 @@ public class PerformerControlador
         performerDAO = new PerformerDAOImpl(conexionBaseDeDatos);
     }
 
-    public Performer BuscarPerformerPorNombre(string nombre)
+    public Performer? BuscarPerformerPorNombre(string nombre)
     {
         return performerDAO.GetPerformerPorNombre(nombre);
     }
