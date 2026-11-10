@@ -20,7 +20,37 @@ public class ConexionBaseDeDatos
     /// </summary>
     private ConexionBaseDeDatos()
     {
-        this.baseDeDatos = "BaseDeDatos/Reproductor.db";
+        string carpetaLocalShare = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+        string carpetaReproductor = Path.Combine(carpetaLocalShare, "ReproductorMp3");
+
+        Directory.CreateDirectory(carpetaReproductor);
+
+        this.baseDeDatos = Path.Combine(carpetaReproductor, "Reproductor.db");
+
+        bool esNuevaLaBase = !File.Exists(this.baseDeDatos);
+
+        if (esNuevaLaBase)
+        {
+            CrearTablasEnLaBaseDeDatos();
+        }
+    }
+
+    /// <summary>
+    /// Metodo que ejeucta rolas.sql sobre una base nueva para poder
+    /// crear las tablas y los datos de inicio
+    /// </summary>
+    private void CrearTablasEnLaBaseDeDatos()
+    {
+        string rutaEsquema = Path.Combine(AppContext.BaseDirectory, "rolas.sql");
+        string contenidoEsquema = File.ReadAllText(rutaEsquema);
+
+        using SqliteConnection conexionBaseDeDatos = CrearConexion();
+        conexionBaseDeDatos.Open();
+
+        using SqliteCommand comandoCrearTablas = conexionBaseDeDatos.CreateCommand();
+        comandoCrearTablas.CommandText = contenidoEsquema;
+        comandoCrearTablas.ExecuteNonQuery();
     }
 
     /// <summary>
