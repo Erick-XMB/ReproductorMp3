@@ -78,6 +78,15 @@ ApplicationWindow {
         id: ventanaAgregarPersonaAGrupo
     }
 
+    VentanaMostrarInformacionArtistas{
+        id: ventanaMostrarInformacionArtistas
+    }
+
+    VentanaMostrarInformacionPersonas{
+        id: ventanaMostrarInformacionPersonas
+    }
+    
+
     function cargarRolasAlMinar(){
         myModel.clear()
         var filas = JSON.parse(rolasVista.obtenerRolasJson())
@@ -222,6 +231,25 @@ ApplicationWindow {
                     }
 
                     onClicked: ventanaNuevoInterprete.show()
+                }
+
+                Button {
+                    id: botonMostrarArtistas
+                    x: 90
+                    y: 6
+                    width: 35
+                    height: 34
+                    anchors.left: botonPerformer.right
+                    anchors.leftMargin: 7
+                    text: "\uc6c3"
+                    background: Rectangle {
+                        color: botonMostrarArtistas.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        radius: 6
+                    }
+
+                    onClicked: {
+                        ventanaMostrarInformacionArtistas.show()
+                    }
                 }
             }
 

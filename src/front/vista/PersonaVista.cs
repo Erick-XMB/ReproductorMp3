@@ -45,4 +45,23 @@ public class PersonaVista
         }
         return JsonSerializer.Serialize(filas);
     }
+
+    public string ObtenerTodasLasPersonasJson()
+    {
+        List<Person> personas = controladorPersona.ObtenerTodasLasPersonas();
+        var filas = new List<object>();
+
+        foreach (Person persona in personas)
+        {
+            filas.Add(new
+            {
+                No = persona.IdPerson,
+                Nombre_real = persona.RealName,
+                Nombre_artistico = persona.StageName,
+                Fecha_de_nacimiento = persona.BirthDate,
+                Fecha_de_muerte = persona.DeathDate
+            });
+        }
+        return JsonSerializer.Serialize(filas);
+    }
 }
