@@ -26,6 +26,8 @@ public interface PerformerDAO
     /// <returns> el performer que queriamos recuperar </returns>
     public Performer GetPerformerPorNombre(string name);
 
+    public void UpdateTipoDelPerformer(int id_performer, int id_type);
+
     /// <summary>
     /// Metodo que actualiza un performer en la base de datos
     /// </summary>

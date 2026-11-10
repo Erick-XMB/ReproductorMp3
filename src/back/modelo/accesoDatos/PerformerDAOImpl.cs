@@ -108,6 +108,19 @@ public class PerformerDAOImpl : PerformerDAO
 
     }
 
+    public void UpdateTipoDelPerformer(int id_performer, int id_type)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"UPDATE performers SET id_type = $id_type WHERE id_performer = $id_performer";
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        command.Parameters.AddWithValue("$id_performer", id_performer);
+        command.Parameters.AddWithValue("$id_type", id_type);
+
+        command.ExecuteNonQuery();
+    }
+
 
     /// <summary>
     /// Metodo que actualiza un performer en la base de datos

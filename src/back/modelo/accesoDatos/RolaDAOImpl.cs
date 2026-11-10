@@ -344,7 +344,48 @@ public class RolaDAOImpl : RolaDAO
         command.Parameters.AddWithValue("$genre", rola.Genre);
 
         command.ExecuteNonQuery();
+    }
 
+    public void UpdateNombreDeLaRola(int id_rola, string title)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"UPDATE rolas SET title = $title  WHERE id_rola = $id_rola";
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+
+        command.Parameters.AddWithValue("$id_rola", id_rola);
+        command.Parameters.AddWithValue("$title", title);
+
+        command.ExecuteNonQuery();
+    }
+
+    public void UpdateAnioDeLaRola(int id_rola, int year)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"UPDATE rolas SET year = $year  WHERE id_rola = $id_rola";
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+
+        command.Parameters.AddWithValue("$id_rola", id_rola);
+        command.Parameters.AddWithValue("$year", year);
+
+        command.ExecuteNonQuery();
+    }
+
+    public void UpdateGeneroDeLaRola(int id_rola, string genre)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"UPDATE rolas SET genre = $genre  WHERE id_rola = $id_rola";
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+
+        command.Parameters.AddWithValue("$id_rola", id_rola);
+        command.Parameters.AddWithValue("$genre", genre);
+
+        command.ExecuteNonQuery();
     }
 
     /// <summary>

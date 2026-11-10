@@ -23,16 +23,18 @@ Comandos extra para la limpieza de archivos
 
 Teconologias utilizadas en el proyecto
 -------------------
-- .NET SDK 10.0.112
-- Framework: Avalonia 12.1.1
-- DocFX 2.80.1 para la documentacion
+- .NET SDK 10.0.114
 - libgl1-mesa-dev  
 - libxkbcommon-dev.
 - libxcb-cursor0
 - cmake version 3.28.3
-- dotnet new install QtGroup.Qt.Bridge.CSharp.Templates
 - g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
 - ninja --version 1.11.1
+- Qt 6.12.0
+
+
+- dotnet new install QtGroup.Qt.Bridge.CSharp.Templates
+- DocFX 2.80.1 para la documentacion
 
 
 Desarrollador

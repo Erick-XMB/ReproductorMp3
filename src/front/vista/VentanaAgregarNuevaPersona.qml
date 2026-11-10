@@ -127,7 +127,17 @@ import QtMultimedia
                             id: botonAceptarNuevaPersona
                             text: "Aceptar"
                             onClicked: {
+
+                                var json = performerVista.buscarPerformerPorNombre(textoNombreArtistico.text)
+
+                                var performerPersona = JSON.parse(json)
+
                                 var operacionExitosa = personaVista.agregarObjetoPersona(textoNombreReal.text, textoNombreArtistico.text, textoFechaNacimiento.text, textoFechaMuerte.text)
+                                
+                                if(performerPersona != null && operacionExitosa){
+                                    performerVista.actualizarTipoDelPerformer(performerPersona.IdPerformer,  0)
+                                }
+                                
                                 ventanaAgregarNuevaPersona.close()
 
                                 if(operacionExitosa){

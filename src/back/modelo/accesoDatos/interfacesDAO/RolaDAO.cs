@@ -49,6 +49,12 @@ public interface RolaDAO
     /// <param name="rola"> es la rola que queremos actualizar </param>
     public void UpdateRola(Rola rola);
 
+    public void UpdateNombreDeLaRola(int id_rola, string title);
+
+    public void UpdateAnioDeLaRola(int id_rola, int year);
+
+    public void UpdateGeneroDeLaRola(int id_rola, string genre);
+
     /// <summary>
     /// Metodo que elimina una rola de la base de datos
     /// </summary>

@@ -41,6 +41,10 @@ ApplicationWindow {
         id: grupoVista
     }
 
+    PerformerVista{
+        id: performerVista
+    }
+
     MediaPlayer{
         id: reproductor
         audioOutput: AudioOutput { }
@@ -301,6 +305,7 @@ ApplicationWindow {
 
                         delegate: Rectangle {
                             required property int row
+                            required property int column
 
                             implicitHeight: 40
                             color: row  === tableview.selectionModel.currentIndex.row ? "#535353" : "#282828"
@@ -310,6 +315,33 @@ ApplicationWindow {
                                 text: display
                                 color: "white"
                                 anchors.centerIn: parent
+                            }
+
+                            TableView.editDelegate: TextField{
+                                anchors.fill: parent
+                                text: display
+                                background: Rectangle {color: "#404040"}
+                                horizontalAlignment: TextInput.AlignHCenter
+                                verticalAlignment: TextInput.AlignVCenter
+                                Component.onCompleted: selectAll()
+
+                                TableView.onCommit: {
+                                    var fila = myModel.getRow(row)
+
+                                    if(column === 1){
+                                        rolasVista.actualizarNombreRola(fila.No, text)
+                                    } else if (column === 4){
+                                        rolasVista.actualizarGeneroRola(fila.No, text)
+                                    } else if (column === 5){
+                                        var anio = parseInt(text)
+                                        if(isNaN(anio)) return
+                                        rolasVista.ActualizarAnioRola(fila.No, anio)
+                                    } else {
+                                        return
+                                    }
+
+                                    display = text
+                                }
                             }
                         }
                     }

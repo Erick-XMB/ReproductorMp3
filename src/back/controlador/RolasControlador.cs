@@ -71,4 +71,19 @@ public class RolasControlador
     {
         return rolaDAO.GetRolasPorBusquedaAvanzada(parametrosBusqueda);
     }
+
+    public void ActualizarNombreDeLaRola(int id_rola, string title)
+    {
+        rolaDAO.UpdateNombreDeLaRola(id_rola, title);
+    }
+
+    public void ActualizarGeneroDeLaRola(int id_rola, string genre)
+    {
+        rolaDAO.UpdateGeneroDeLaRola(id_rola, genre);
+    }
+
+    public void ActualizarAnioDeLaRola(int id_rola, int year)
+    {
+        rolaDAO.UpdateAnioDeLaRola(id_rola, year);
+    }
 }

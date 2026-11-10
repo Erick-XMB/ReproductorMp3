@@ -134,4 +134,19 @@ public class RolasVista
         return $"data:{portada.Value.TipoImagen};base64,{base64}";
     }
 
+    public void ActualizarNombreRola(int id_rola, string title)
+    {
+        controladorRolas.ActualizarNombreDeLaRola(id_rola, title);
+    }
+
+    public void ActualizarGeneroRola(int id_rola, string genero)
+    {
+        controladorRolas.ActualizarGeneroDeLaRola(id_rola, genero);
+    }
+
+    public void ActualizarAnioRola(int id_rola, int anio)
+    {
+        controladorRolas.ActualizarAnioDeLaRola(id_rola, anio);
+    }
+
 }
