@@ -85,6 +85,10 @@ ApplicationWindow {
     VentanaMostrarInformacionPersonas{
         id: ventanaMostrarInformacionPersonas
     }
+
+    VentanaMostrarInformacionGrupos{
+        id: ventanaMostrarInformacionGrupos
+    }
     
 
     function cargarRolasAlMinar(){

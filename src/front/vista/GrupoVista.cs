@@ -7,7 +7,7 @@ using ReproductorMp3.modelo.entidades;
 /// Sirve de puente entre el controlador de los grupos y la GUI en QML
 /// </summary>
 public class GrupoVista
-{   
+{
     // Atributo de tipo GrupoControlador para poder acceder a la logica de los grupos
     private GrupoControlador grupoControlador = new GrupoControlador();
 
@@ -49,6 +49,25 @@ public class GrupoVista
             {
                 id = grupo.IdGroup,
                 nombre = grupo.Name
+            });
+        }
+        return JsonSerializer.Serialize(filas);
+    }
+
+    public string ObtenerTodosLosGruposJson()
+    {
+        List<Group> grupos = grupoControlador.ObtenerTodosLosGrupos();
+        var filas = new List<object>();
+
+        foreach (Group grupo in grupos)
+        {
+            filas.Add(new
+            {
+                No = grupo.IdGroup,
+                Nombre = grupo.Name,
+                Integrantes = "",
+                Fecha_de_inicio = grupo.StartDate,
+                Fecha_de_termino = grupo.EndDate
             });
         }
         return JsonSerializer.Serialize(filas);

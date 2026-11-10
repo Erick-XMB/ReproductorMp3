@@ -64,6 +64,12 @@ Window {
                             radius: 6
                             color: buttonMostrarGrupos.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
                         }
+
+                        onClicked: {
+                            ventanaMostrarInformacionGrupos.show()
+                            ventanaMostrarInformacionGrupos.cargarTodasLosGruposALaTabla()
+                            ventanaMostrarInformacionArtistas.close()
+                        }
                     }
 
 
