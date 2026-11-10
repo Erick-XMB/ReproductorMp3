@@ -65,7 +65,7 @@ public class GrupoVista
             {
                 No = grupo.IdGroup,
                 Nombre = grupo.Name,
-                Integrantes = "",
+                Integrantes = string.Join(", ", grupoControlador.ObtenerIntegrantes(grupo.IdGroup)),
                 Fecha_de_inicio = grupo.StartDate,
                 Fecha_de_termino = grupo.EndDate
             });

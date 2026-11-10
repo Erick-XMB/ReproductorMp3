@@ -46,6 +46,11 @@ public class GrupoControlador
         return groupDAO.ObtenerTodoLosGrupos();
     }
 
+    public List<string> ObtenerIntegrantes(int id_group)
+    {
+        return groupDAO.ObtenerIntegrantes(id_group);
+    }
+
     /// <summary>
     /// Metodo que conecta el id de una perosona, con el id de un grupo
     /// para generar la relacion entre ambas entidades

@@ -33,6 +33,8 @@ public interface GroupDAO
     /// <param name="id_group"> es el id del grupo al cual queremos agregar un integrante </param>
     public bool AgregarIntegrante(int id_person, int id_group);
 
+    public List<string> ObtenerIntegrantes(int id_group);
+
     /// <summary>
     /// Metodo para actualizar un grupo de la base de datos
     /// </summary>

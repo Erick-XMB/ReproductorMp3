@@ -149,6 +149,32 @@ public class GroupDAOImpl : GroupDAO
         }
     }
 
+    public List<string> ObtenerIntegrantes(int id_group)
+    {
+        List<string> integrantes = new List<string>();
+
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"SELECT p.stage_name
+                        FROM in_group ig
+                        JOIN persons p ON p.id_person = ig.id_person
+                        WHERE ig.id_group = $id_group";
+
+        SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+
+        command.Parameters.AddWithValue("$id_group", id_group);
+
+        SqliteDataReader lector = command.ExecuteReader();
+
+        while (lector.Read())
+        {
+            integrantes.Add(lector.GetString(0));
+        }
+
+        return integrantes;
+    }
+
     /// <summary>
     /// Metodo para actualizar un grupo de la base de datos
     /// </summary>

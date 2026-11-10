@@ -312,6 +312,7 @@ ApplicationWindow {
                                     reproductor.source = "file://" + fila.Ruta
                                     reproductor.play()
                                     imagenPortada.source = rolasVista.obtenerPortadaArchivo(fila.Ruta)
+                                    barraReproduccion.value = 0
                                 }
                             }
                         }
@@ -482,9 +483,19 @@ ApplicationWindow {
                     Item { Layout.fillHeight: true }
 
                     Slider {
-                        id: slider
-                        value: 0
+                        id: barraReproduccion
                         Layout.fillWidth: true
+                        from: 0
+                        to: reproductor.duration
+
+                        onMoved: reproductor.position = value
+
+                        Binding {
+                            target: barraReproduccion
+                            property: "value"
+                            value: reproductor.position
+                            when: !barraReproduccion.pressed
+                        }
                     }
 
                 }

@@ -9,7 +9,7 @@ import QtMultimedia
  Window {
     id: ventanaMostrarInformacionGrupos
     title: "Información de Grupos"
-    width: 650
+    width: 800
     height: 450
     color: "#121212"
 
@@ -80,7 +80,7 @@ import QtMultimedia
                         rowSpacing: 1
 
                         columnWidthProvider: function(column) {
-                            let proportions = [0.08, 0.23, 0.23, 0.23, 0.23]
+                            let proportions = [0.05, 0.25, 0.40, 0.15, 0.15]
                             return (width - columnSpacing * (columns - 1))
                                    * proportions[column]
                         }
