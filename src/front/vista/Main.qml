@@ -415,6 +415,12 @@ ApplicationWindow {
                         RoundButton {
                             id: roundButton
                             text: "\u23ee"
+                            onClicked: {
+                                var filaAnterior = tableview.selectionModel.currentIndex.row - 1
+                                if (filaAnterior >= 0){
+                                    tableview.selectionModel.setCurrentIndex(tableview.index(filaAnterior, 0), ItemSelectionModel.ClearAndSelect)
+                                }
+                            }
                         }
 
                         RoundButton {
@@ -432,6 +438,12 @@ ApplicationWindow {
                         RoundButton {
                             id: roundButton2
                             text: "\u23ed"
+                            onClicked: {
+                                var filaPosterior = tableview.selectionModel.currentIndex.row + 1
+                                if (filaPosterior < tableview.rows){
+                                    tableview.selectionModel.setCurrentIndex(tableview.index(filaPosterior, 0), ItemSelectionModel.ClearAndSelect)
+                                }
+                            }
                         }
                     }
 
