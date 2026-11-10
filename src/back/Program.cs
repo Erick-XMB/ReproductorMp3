@@ -3,18 +3,26 @@ using ReproductorMp3.modelo.minero;
 using ReproductorMp3.controlador;
 using ReproductorMp3.modelo.entidades;
 
-string rutaMp3 = "/home/killomanlinux/Documentos/modeladoyprogramacion/musica";
-
-MineroControlador mineroControlador = new MineroControlador();
-int rolasGuardadas = mineroControlador.MinarYGuardar(rutaMp3);
-
-RolasControlador rolasControlador = new RolasControlador();
-List<Rola> rolas = rolasControlador.ObtenerRolas();
-
-Console.WriteLine("Numero de canciones guardadas: " + rolasGuardadas);
-
-Console.WriteLine("Rolas en la base: " + rolas.Count);
-foreach(Rola r in rolas.Take(5))
+public class Program
 {
-    Console.WriteLine(r.Track + "|" + r.Title + "|" + r.Performer + "|" + r.Album.Name);
+    public static void Main()
+    {
+        MineroControlador mineroControlador = new MineroControlador();
+        Console.WriteLine("Ingresa la ruta que quieres minar:");
+        string rutaMp3 = Console.ReadLine()!;
+
+        try
+        {
+            int rolasGuardadas = mineroControlador.MinarYGuardar(rutaMp3);
+            Console.WriteLine("Minaste un total de: " + rolasGuardadas + " canciones");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Ruta no valida");
+        }
+    }
 }
+
+
+
+
