@@ -11,7 +11,7 @@ Window {
     id: ventanaMostrarInformacionArtistas
     title: "Seleccionar para mostrar información"
     width: 500
-    height: 100
+    height: 150
     color: "#121212"
 
     ColumnLayout {
@@ -37,6 +37,23 @@ Window {
                     columns: 1
                     columnSpacing: 16
                     rowSpacing: 8
+
+                    Button {
+                        id: buttonMostrarAlbumnes
+                        text: "Albums"
+                        Layout.fillWidth: true
+
+                        background: Rectangle {
+                            radius: 6
+                            color: buttonMostrarAlbumnes.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        }
+
+                        onClicked: {
+                            ventanaMostarInformacionAlbums.show()
+                            ventanaMostarInformacionAlbums.cargarTodasLosAlbumsALaTabla()
+                            ventanaMostrarInformacionArtistas.close()
+                        }
+                    }
 
                     Button {
                         id: buttonMostrarPersonas

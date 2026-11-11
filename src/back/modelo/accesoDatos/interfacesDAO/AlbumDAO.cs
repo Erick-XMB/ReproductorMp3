@@ -28,6 +28,12 @@ public interface AlbumDAO
     public Album GetAlbumPorNombreYRuta(string name, string ruta);
 
     /// <summary>
+    /// Metodo que recupera a todos las albums de la base de datos
+    /// </summary>
+    /// <returns> Una lista con todas las albums que hay en la base de datos </returns>
+    public List<Album> ObtenerTodasLosAlbums();
+
+    /// <summary>
     /// Metodo para actualizar un album de la base de datos
     /// </summary>
     /// <param name="album"> es el album que deseamos actualizar</param>

@@ -114,6 +114,37 @@ public class AlbumDAOImpl : AlbumDAO
     }
 
     /// <summary>
+    /// Metodo que recupera a todos las albums de la base de datos
+    /// </summary>
+    /// <returns> Una lista con todas las albums que hay en la base de datos </returns>
+    public List<Album> ObtenerTodasLosAlbums()
+    {
+        List<Album> albums = new List<Album>();
+
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"SELECT id_album, path, name, year FROM albums";
+
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteDataReader lector = command.ExecuteReader();
+
+        while (lector.Read())
+        {
+            Album album = new Album(
+                Convert.ToInt32(lector["id_album"]),
+                lector["path"].ToString()!,
+                lector["name"].ToString()!,
+                 Convert.ToInt32(lector["year"])
+            );
+
+            albums.Add(album);
+        }
+
+        return albums;
+    }
+
+    /// <summary>
     /// Metodo para actualizar un album de la base de datos
     /// </summary>
     /// <param name="album"> es el album que deseamos actualizar</param>

@@ -1,6 +1,6 @@
 Proyecto Reproductor MP3 MYP
 ========================
-Proyecto número 2 de la materia modelado y programación, que implementa unreproductor mp3 donde principalmente se involucra el tema de bases de datos.
+Proyecto número 2 de la materia modelado y programación, que implementa unreproductor mp3 donde principalmente se involucrá el tema de bases de datos.
 
 Comandos sistemas de construccion
 -------------
@@ -15,9 +15,15 @@ Los comandos para compilar y ejecutar el frontend son:
 * make front
 * make runFront
 
+Los comando para generar la documentación y para verla como página web respectivamente son:
+
+* make docs
+* make servidorDocs
+
 Comandos extra para la limpieza de archivos
 * make limpiarBack
 * make limpiarFront
+* make limpiarDocs
 * make clean
 
 

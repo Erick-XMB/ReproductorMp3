@@ -33,6 +33,10 @@ ApplicationWindow {
         id: rolasVista
     }
 
+    AlbumVista{
+        id: albumVista
+    }
+
     PersonaVista{
         id: personaVista
     }
@@ -88,6 +92,10 @@ ApplicationWindow {
 
     VentanaMostrarInformacionGrupos{
         id: ventanaMostrarInformacionGrupos
+    }
+
+    VentanaMostarInformacionAlbums{
+        id: ventanaMostarInformacionAlbums
     }
     
 
@@ -368,7 +376,7 @@ ApplicationWindow {
                                     } else if (column === 5){
                                         var anio = parseInt(text)
                                         if(isNaN(anio)) return
-                                        rolasVista.ActualizarAnioRola(fila.No, anio)
+                                        rolasVista.actualizarAnioRola(fila.No, anio)
                                     } else {
                                         return
                                     }
