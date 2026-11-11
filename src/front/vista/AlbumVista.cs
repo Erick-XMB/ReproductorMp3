@@ -32,4 +32,26 @@ public class AlbumVista
         }
         return JsonSerializer.Serialize(filas);
     }
+
+    /// <summary>
+    /// Metodo que funciona como puente entre el controlador de los albums con la interfaz en QML
+    /// Actualiza el nombre de un album seleccionada
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="name"> es el titulo que queremos asignar </param>
+    public void ActualizarNombreAlbum(int id_rola, string name)
+    {
+        albumControlador.ActualizarNombreDeUnAlbum(id_rola, name);
+    }
+
+    /// <summary>
+    /// Metodo que funciona como puente entre el controlador de las rolas con la interfaz en QML
+    /// Actualiza el anio de un album seleccionada
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="year"> es el anio que queremos asignar </param>
+    public void ActualizarAnioAlbum(int id_rola, int year)
+    {
+        albumControlador.ActualizarAnioDeUnAlbum(id_rola, year);
+    }
 }

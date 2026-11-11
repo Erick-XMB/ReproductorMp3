@@ -37,4 +37,24 @@ public class AlbumControlador
         return albumDAO.ObtenerTodasLosAlbums();
     }
 
+    /// <summary>
+    /// Metodo para actualizar el nombre de un album de la base de datos
+    /// </summary>
+    /// <param name="id_album"> es el album que deseamos actualizar</param>
+    /// <param name="name"> es el nombre que queremos asignar</param>
+    public void ActualizarNombreDeUnAlbum(int id_album, string name)
+    {
+        albumDAO.UpdateNombreDeUnAlbum(id_album, name);
+    }
+
+    /// <summary>
+    /// Metodo que actualiza el anio de un album de la base de datos
+    /// </summary>
+    /// <param name="id_album"> es el id del album que deseamos actualizar </param>
+    /// <param name="year"> es el nuevo anio que queremos asignar </param>
+    public void ActualizarAnioDeUnAlbum(int id_album, int year)
+    {
+        albumDAO.UpdateAnioDeUnAlbum(id_album, year);
+    }
+
 }

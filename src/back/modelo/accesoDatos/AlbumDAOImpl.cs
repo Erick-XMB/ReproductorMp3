@@ -164,6 +164,42 @@ public class AlbumDAOImpl : AlbumDAO
     }
 
     /// <summary>
+    /// Metodo para actualizar el nombre de un album de la base de datos
+    /// </summary>
+    /// <param name="id_album"> es el album que deseamos actualizar</param>
+    /// <param name="name"> es el nombre que queremos asignar</param>
+    public void UpdateNombreDeUnAlbum(int id_album, string name)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"UPDATE albums SET name = $name, name = $name WHERE id_album = $id_album";
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        command.Parameters.AddWithValue("$id_album", id_album);
+        command.Parameters.AddWithValue("$name", name);
+
+        command.ExecuteNonQuery();
+    }
+
+    /// <summary>
+    /// Metodo que actualiza el anio de un album de la base de datos
+    /// </summary>
+    /// <param name="id_album"> es el id del album que deseamos actualizar </param>
+    /// <param name="year"> es el nuevo anio que queremos asignar </param>
+    public void UpdateAnioDeUnAlbum(int id_album, int year)
+    {
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"UPDATE albums SET year = $year WHERE id_album = $id_album";
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        command.Parameters.AddWithValue("$id_album", id_album);
+        command.Parameters.AddWithValue("$year", year);
+
+        command.ExecuteNonQuery();
+    }
+
+    /// <summary>
     /// Metodo para eliminar un album de la base de datos
     /// </summary>
     /// <param name="id_album"> es el id del album que deseamos eliminar </param>

@@ -80,6 +80,8 @@ import QtMultimedia
                         columnSpacing: 1
                         rowSpacing: 1
 
+                        selectionModel: ItemSelectionModel {}   
+
                         columnWidthProvider: function(column) {
                             let proportions = [0.10, 0.70, 0.20]
                             return (width - columnSpacing * (columns - 1))
@@ -95,14 +97,44 @@ import QtMultimedia
                         }
 
                         delegate: Rectangle {
+                            required property int row
+                            required property int column
+
                             implicitHeight: 40
-                            color: "#282828"
+                            color: row  === tableviewAlbums.selectionModel.currentIndex.row ? "#535353" : "#282828"
                             border.color: "Black"
 
                             Text {
                                 text: display
                                 color: "white"
                                 anchors.centerIn: parent
+                            }
+
+                            TableView.editDelegate: TextField{
+                                anchors.fill: parent
+                                text: display
+                                background: Rectangle {color: "#404040"}
+                                horizontalAlignment: TextInput.AlignHCenter
+                                verticalAlignment: TextInput.AlignVCenter
+                                Component.onCompleted: selectAll()
+
+                                TableView.onCommit: {
+                                    var fila = myModelAlbums.getRow(row)
+
+                                    if(column === 1){
+                                        albumVista.actualizarNombreAlbum(fila.No, text)
+                                        window.cargarRolasAlMinar()
+                                    }  else if (column === 2){
+                                        var anio = parseInt(text)
+                                        if(isNaN(anio)) return
+                                        albumVista.actualizarAnioAlbum(fila.No, anio)
+                                        window.cargarRolasAlMinar()
+                                    } else {
+                                        return
+                                    }
+
+                                    display = text
+                                }
                             }
                         }
                     }
