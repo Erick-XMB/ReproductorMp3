@@ -8,7 +8,7 @@ using ReproductorMp3.modelo.minero;
 /// <summary>
 /// Clase que represneta el controlador de las personas
 /// del reproductor de musica
-/// </summary> <summary>
+/// </summary> 
 public class PersonaControlador
 {
     // Atirbuto de tipo PersonDAO para poder tener acceso a la tabla de personas de la base de datos
@@ -31,13 +31,13 @@ public class PersonaControlador
     /// <summary>
     /// Metodo que ingresa una persona a la base de datos
     /// </summary>
-    /// <param name="person">< es la persona que queremos ingresar /param>
-    public bool agregarPersona(Person person)
+    /// <param name="person"> es la persona que queremos ingresar </param>
+    public bool AgregarPersona(Person person)
     {
         return personDAO.CreatePerson(person);
     }
 
-        /// <summary>
+    /// <summary>
     /// Metodo que recupera a todas las personas de la base de datos
     /// </summary>
     /// <returns> Una lista con todas las personas que hay en la base de datos </returns>

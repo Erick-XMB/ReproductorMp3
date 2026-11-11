@@ -5,7 +5,7 @@ using Microsoft.Data.Sqlite;
 namespace ReproductorMp3.modelo.accesoDatos;
 
 /// <summary>
-/// Interfaz que define las operaciones de acceso a datos para los grupos 
+/// Clase que implementa la interfaz que define las operaciones de acceso a datos para los grupos 
 /// </summary>
 public class GroupDAOImpl : GroupDAO
 {

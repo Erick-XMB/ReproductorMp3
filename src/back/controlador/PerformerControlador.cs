@@ -21,7 +21,7 @@ public class PerformerControlador
     /// Constructor de la clase PerformerControlador
     /// Destacamos llamada a nuestra ConexionBaseDeDatos para
     /// poder tener siempre la misma conexion
-    /// </summary> <summary>
+    /// </summary>
     public PerformerControlador()
     {
         ConexionBaseDeDatos conexionBaseDeDatos = ConexionBaseDeDatos.GetInstancia();

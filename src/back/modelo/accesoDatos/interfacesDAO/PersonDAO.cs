@@ -9,7 +9,7 @@ public interface PersonDAO
     /// <summary>
     /// Metodo que ingresa una persona a la base de datos
     /// </summary>
-    /// <param name="person">< es la persona que queremos ingresar /param>
+    /// <param name="person"> es la persona que queremos ingresar </param>
     public bool CreatePerson(Person person);
 
     /// <summary>

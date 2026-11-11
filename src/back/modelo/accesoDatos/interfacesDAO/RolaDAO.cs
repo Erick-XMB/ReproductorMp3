@@ -54,7 +54,6 @@ public interface RolaDAO
     /// </summary>
     /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
     /// <param name="title"> es el nuevo nombre que queremos asignar a la rola</param> 
-    /// <summary>
     public void UpdateNombreDeLaRola(int id_rola, string title);
 
     /// <summary>

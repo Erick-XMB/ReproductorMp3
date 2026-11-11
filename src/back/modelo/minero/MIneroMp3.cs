@@ -35,7 +35,7 @@ public class MineroMp3
     /// DatosMp3, solamenre si tiene la etiqueta Id3v2
     /// </summary>
     /// <param name="ruta"> es la ruta del archivo .mp3 </param>
-    /// <returns> un objeto de tipo DatosMp3, null en caso de no tener la etiqueta requerida </returns> <summary>
+    /// <returns> un objeto de tipo DatosMp3, null en caso de no tener la etiqueta requerida </returns>
     public DatosMp3? AnalizarArchivoMp3(string ruta)
     {
         var archivo = TagLib.File.Create(ruta);

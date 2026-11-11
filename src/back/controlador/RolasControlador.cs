@@ -77,7 +77,6 @@ public class RolasControlador
     /// </summary>
     /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
     /// <param name="title"> es el nuevo nombre que queremos asignar a la rola</param> 
-    /// <summary>
     public void ActualizarNombreDeLaRola(int id_rola, string title)
     {
         rolaDAO.UpdateNombreDeLaRola(id_rola, title);

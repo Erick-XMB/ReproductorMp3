@@ -21,7 +21,7 @@ public class GrupoControlador
     /// Constructor de la clase GrupoControlador
     /// Destacamos llamada a nuestra ConexionBaseDeDatos para
     /// poder tener siempre la misma conexion
-    /// </summary> <summary>
+    /// </summary>
     public GrupoControlador()
     {
         ConexionBaseDeDatos conexionBaseDeDatos = ConexionBaseDeDatos.GetInstancia();

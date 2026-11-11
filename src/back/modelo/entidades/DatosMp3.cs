@@ -104,7 +104,7 @@ public class DatosMp3
     /// Constructor de la clase DatosMP3
     /// </summary>
     /// <param name="track"> es el track del mp3</param>
-    /// <param name="titulo">< representa el titulo del mp3 /param>
+    /// <param name="titulo"> representa el titulo del mp3 </param>
     /// <param name="artista"> representa el artista del mp3 </param>
     /// <param name="album"> representa el album del mp3 </param>
     /// <param name="anio"> representa el anio del mp3 </param>

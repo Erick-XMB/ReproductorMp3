@@ -48,8 +48,6 @@ public class Performer
     /// <param name="id_performer"> representa el identificador del performer </param>
     /// <param name="id_type"> representa el tipo de performer que es</param>
     /// <param name="name"> representa el nombre del performer </param>
-    /// </summary>
-
     public Performer(int id_performer, int id_type, string name)
     {
         this.id_performer = id_performer;

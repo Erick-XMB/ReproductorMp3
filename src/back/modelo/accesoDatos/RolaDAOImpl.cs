@@ -4,8 +4,8 @@ using Microsoft.Data.Sqlite;
 
 namespace ReproductorMp3.modelo.accesoDatos;
 
-/// </sumary>
-/// Interfaz que define las operaciones de acceso a datos para las rolas 
+/// <summary>
+/// Clase que implement la interfaz que define las operaciones de acceso a datos para las rolas 
 /// </summary>
 public class RolaDAOImpl : RolaDAO
 {
@@ -351,7 +351,6 @@ public class RolaDAOImpl : RolaDAO
     /// </summary>
     /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
     /// <param name="title"> es el nuevo nombre que queremos asignar a la rola</param> 
-    /// <summary>
     public void UpdateNombreDeLaRola(int id_rola, string title)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();

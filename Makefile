@@ -18,6 +18,16 @@ runFront:
 limpiarCliente:
 	dotnet clean src/front/vista/vista.csproj
 
+docs:
+	docfx metadata documentos/documentacion/docfx.json
+	docfx build documentos/documentacion/docfx.json
+
+servidorDocs:
+	docfx serve documentos/documentacion/_site
+
+limpiarDocs:
+	rm -rf documentos/documentacion/_site documentos/documentacion/api
+
 clean:
 	dotnet clean src/back/back.csproj
 	dotnet clean src/front/vista/vista.csproj

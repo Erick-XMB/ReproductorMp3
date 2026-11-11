@@ -22,7 +22,7 @@ public class PersonaVista
     public bool AgregarObjetoPersona(string nombreReal, string nombreArtistico, string fechaNacimiento, string fechaFallecimiento)
     {
         Person persona = new Person(nombreReal, nombreArtistico, fechaNacimiento, fechaFallecimiento);
-        return controladorPersona.agregarPersona(persona);
+        return controladorPersona.AgregarPersona(persona);
     }
 
     /// <summary>

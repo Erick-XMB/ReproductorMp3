@@ -4,8 +4,8 @@ using Microsoft.Data.Sqlite;
 
 namespace ReproductorMp3.modelo.accesoDatos;
 
-/// </sumary>
-/// Interfaz que define las operaciones de acceso a datos para las persons 
+/// <summary>
+/// Clase que implementa interfaz que define las operaciones de acceso a datos para las persons 
 /// </summary>
 public class PersonDAOImpl : PersonDAO
 {
@@ -26,7 +26,7 @@ public class PersonDAOImpl : PersonDAO
     /// <summary>
     /// Metodo que ingresa una persona a la base de datos
     /// </summary>
-    /// <param name="person">< es la persona que queremos ingresar /param>
+    /// <param name="person"> es la persona que queremos ingresar </param>
     public bool CreatePerson(Person person)
     {
         if (string.IsNullOrWhiteSpace(person.RealName) || string.IsNullOrWhiteSpace(person.BirthDate) || string.IsNullOrWhiteSpace(person.StageName))

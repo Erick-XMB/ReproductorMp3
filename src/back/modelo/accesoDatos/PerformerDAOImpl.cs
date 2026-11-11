@@ -6,7 +6,7 @@ using SQLitePCL;
 namespace ReproductorMp3.modelo.accesoDatos;
 
 /// <summary>
-/// Interfaz que define las operaciones de acceso a datos para los performers 
+/// Clase que implementa la interfaz que define las operaciones de acceso a datos para los performers 
 /// </summary>
 public class PerformerDAOImpl : PerformerDAO
 {
