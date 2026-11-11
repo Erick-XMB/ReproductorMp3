@@ -31,15 +31,15 @@ Teconologias utilizadas en el proyecto
 -------------------
 - .NET SDK 10.0.114
 - libgl1-mesa-dev  
-- libxkbcommon-dev.
+- libxkbcommon-dev
 - libxcb-cursor0
 - cmake version 3.28.3
 - g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
 - ninja --version 1.11.1
-- Qt 6.12.0
+- Qt 6.12.0 
+(Por defecto el proyecto busca Qt en (HOME)/Qt/6.12.0/gcc_64, si se tiene instalado en otra ruta, la modificación se hace sobre el archivo vista.csproj)
 
 
-- dotnet new install QtGroup.Qt.Bridge.CSharp.Templates
 - DocFX 2.80.1 para la documentacion
 
 
