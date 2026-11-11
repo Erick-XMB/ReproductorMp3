@@ -134,16 +134,34 @@ public class RolasVista
         return $"data:{portada.Value.TipoImagen};base64,{base64}";
     }
 
+    /// <summary>
+    /// Metodo que funciona como puente entre el controlador de las rolas con la interfaz en QML
+    /// Actualiza el nombre de una rola seleccionada
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="title"> es el titulo que queremos asignar </param>
     public void ActualizarNombreRola(int id_rola, string title)
     {
         controladorRolas.ActualizarNombreDeLaRola(id_rola, title);
     }
 
+    /// <summary>
+    /// Metodo que funciona como puente entre el controlador de las rolas con la interfaz en QML
+    /// Actualiza el genero de una rola seleccionada
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="genero"> es el genero que queremos asignar </param>
     public void ActualizarGeneroRola(int id_rola, string genero)
     {
         controladorRolas.ActualizarGeneroDeLaRola(id_rola, genero);
     }
 
+    /// <summary>
+    /// Metodo que funciona como puente entre el controlador de las rolas con la interfaz en QML
+    /// Actualiza el anio de una rola seleccionada
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="anio"> es el anio que queremos asignar </param>
     public void ActualizarAnioRola(int id_rola, int anio)
     {
         controladorRolas.ActualizarAnioDeLaRola(id_rola, anio);

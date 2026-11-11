@@ -54,6 +54,11 @@ public class GrupoVista
         return JsonSerializer.Serialize(filas);
     }
 
+    /// <summary>
+    /// Metodo que recupera todas las grupos de la base de datos y las 
+    /// convierte a JSON para que el QML pueda mostrarlas 
+    /// </summary>
+    /// <returns> una cadena JSON con la lista de las rolas </returns>
     public string ObtenerTodosLosGruposJson()
     {
         List<Group> grupos = grupoControlador.ObtenerTodosLosGrupos();

@@ -46,6 +46,12 @@ public class GrupoControlador
         return groupDAO.ObtenerTodoLosGrupos();
     }
 
+    /// <summary>
+    /// Metodo que recupera los integrantes que estan asociados al grupo
+    /// </summary>
+    /// <param name="id_group"> es el id del grupo que queremos recuperar sus integrantes </param>
+    /// <returns> una lista de cadenas que representan los nombres de los integrantes
+    /// del grupo </returns>
     public List<string> ObtenerIntegrantes(int id_group)
     {
         return groupDAO.ObtenerIntegrantes(id_group);

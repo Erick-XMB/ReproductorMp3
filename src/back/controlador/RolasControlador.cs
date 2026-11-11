@@ -72,16 +72,33 @@ public class RolasControlador
         return rolaDAO.GetRolasPorBusquedaAvanzada(parametrosBusqueda);
     }
 
+    /// <summary>
+    /// Metodo que actualiza el nombre de una rola en la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="title"> es el nuevo nombre que queremos asignar a la rola</param> 
+    /// <summary>
     public void ActualizarNombreDeLaRola(int id_rola, string title)
     {
         rolaDAO.UpdateNombreDeLaRola(id_rola, title);
     }
 
+
+    /// <summary>
+    /// Metodo que actualiza el genero de una rola en la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="genre"> es el nuevo genero que queremos asignar</param>
     public void ActualizarGeneroDeLaRola(int id_rola, string genre)
     {
         rolaDAO.UpdateGeneroDeLaRola(id_rola, genre);
     }
 
+    /// <summary>
+    /// Metodo que actualiza el anio de una rola en la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="year"> es el nuevo anio que queremos asignar </param>
     public void ActualizarAnioDeLaRola(int id_rola, int year)
     {
         rolaDAO.UpdateAnioDeLaRola(id_rola, year);

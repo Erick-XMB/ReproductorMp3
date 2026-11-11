@@ -28,11 +28,21 @@ public class PerformerControlador
         performerDAO = new PerformerDAOImpl(conexionBaseDeDatos);
     }
 
+    /// <summary>
+    /// Metood que nos devuelve un performer segun su nombre
+    /// </summary>
+    /// <param name="name"> es el nombre del performer que queremos obtener </param>
+    /// <returns> el performer que queriamos recuperar </returns>
     public Performer? BuscarPerformerPorNombre(string nombre)
     {
         return performerDAO.GetPerformerPorNombre(nombre);
     }
 
+    /// <summary>
+    /// Metodo que actualiza el tipo de un performer en la base de datos
+    /// </summary>
+    /// <param name="id_performer"> es el id del performer que queremos actualizar </param>
+    /// <param name="id_type"> es el tipo que queremos asignar </param>
     public void ActualizarTipoDelPerformer(int id_performer, int id_type)
     {
         performerDAO.UpdateTipoDelPerformer(id_performer, id_type);

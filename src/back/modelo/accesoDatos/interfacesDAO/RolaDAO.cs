@@ -49,10 +49,26 @@ public interface RolaDAO
     /// <param name="rola"> es la rola que queremos actualizar </param>
     public void UpdateRola(Rola rola);
 
+    /// <summary>
+    /// Metodo que actualiza el nombre de una rola en la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="title"> es el nuevo nombre que queremos asignar a la rola</param> 
+    /// <summary>
     public void UpdateNombreDeLaRola(int id_rola, string title);
 
+    /// <summary>
+    /// Metodo que actualiza el anio de una rola en la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="year"> es el nuevo anio que queremos asignar </param>
     public void UpdateAnioDeLaRola(int id_rola, int year);
 
+    /// <summary>
+    /// Metodo que actualiza el genero de una rola en la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    /// <param name="genre"> es el nuevo genero que queremos asignar</param>
     public void UpdateGeneroDeLaRola(int id_rola, string genre);
 
     /// <summary>

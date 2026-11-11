@@ -108,6 +108,11 @@ public class PerformerDAOImpl : PerformerDAO
 
     }
 
+    /// <summary>
+    /// Metodo que actualiza el tipo de un performer en la base de datos
+    /// </summary>
+    /// <param name="id_performer"> es el id del performer que queremos actualizar </param>
+    /// <param name="id_type"> es el tipo que queremos asignar </param>
     public void UpdateTipoDelPerformer(int id_performer, int id_type)
     {
         using SqliteConnection conexionAbierta = conexion.CrearConexion();
