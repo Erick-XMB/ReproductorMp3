@@ -235,7 +235,12 @@ public class RolaDAOImpl : RolaDAO
                         FROM rolas r
                         LEFT JOIN performers p ON p.id_performer = r.id_performer
                         LEFT JOIN albums a ON a.id_album = r.id_album
-                        WHERE r.title LIKE $palabra OR a.name LIKE $palabra OR p.name LIKE $palabra OR r.genre LIKE $palabra OR r.year LIKE $palabra";
+                        WHERE r.title LIKE $palabra OR a.name LIKE $palabra OR p.name LIKE $palabra OR r.genre LIKE $palabra OR r.year LIKE $palabra
+                        OR EXISTS( SELECT 17 FROM groups g JOIN in_group ig ON ig.id_group = g.id_group
+                        JOIN persons pe ON pe.id_person = ig.id_person
+                        WHERE p.id_type = 1
+                            AND g.name = p.name
+                            AND(pe.stage_name LIKE $palabra OR pe.real_name LIKE $palabra))";
 
         using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$palabra", "%" + palabra + "%");

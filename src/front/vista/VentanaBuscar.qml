@@ -19,19 +19,6 @@ Window{
          anchors.fill: parent
          spacing: 0
 
-         Rectangle {
-             id: encabezado
-             color: "#4a9272"
-             Layout.fillWidth: true
-             Layout.preferredHeight: 36
-
-             Label {
-                 id: label
-                 anchors.centerIn: parent
-                 text: "Busqueda avanzada"
-                 font.bold: true
-                }
-            }
 
          Rectangle {
              id: rectangleVentanaBuscar
@@ -52,7 +39,7 @@ Window{
                      columnSpacing: 16
                      rowSpacing: 8
 
-                     Switch {
+                     Label {
                          id: switchTitulo
                          text: "Titulo"
                      }
@@ -61,10 +48,10 @@ Window{
                          id: textoTitulo
                          Layout.fillWidth: true
                          placeholderText: qsTr("Ingresar titulo...")
-                         enabled: switchTitulo.checked
+
                      }
 
-                     Switch {
+                     Label {
                          id: switchArtista
                          text: "Artista"
                      }
@@ -73,10 +60,9 @@ Window{
                          id: textoArtista
                          Layout.fillWidth: true
                          placeholderText: qsTr("Ingresar artista...")
-                         enabled: switchArtista.checked
                      }
 
-                     Switch {
+                     Label {
                          id: switchAlbum
                          text: "Album"
                      }
@@ -85,10 +71,9 @@ Window{
                          id: textoAlbum
                          Layout.fillWidth: true
                          placeholderText: qsTr("Ingresar album...")
-                         enabled: switchAlbum.checked
                      }
 
-                     Switch {
+                     Label {
                          id: switchAño
                          text: "Año"
                      }
@@ -97,10 +82,9 @@ Window{
                          id: textoAño
                          Layout.fillWidth: true
                          placeholderText: qsTr("Ingresar año...")
-                         enabled: switchAño.checked
                      }
 
-                     Switch {
+                     Label {
                          id: switchGenero
                          text: "Género"
                      }
@@ -109,7 +93,6 @@ Window{
                          id: textoGenero
                          Layout.fillWidth: true
                          placeholderText: qsTr("Ingresar genero...")
-                         enabled: switchGenero.checked
                      }
 
                      Button {
