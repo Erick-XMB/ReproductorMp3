@@ -157,7 +157,7 @@ public class MineroControlador
         }
 
         string titulo = datos.Titulo ?? "Unknown";
-        string genero = datos.Generos[0];
+        string genero = datos.Generos.Length > 0 ? datos.Generos[0] : "Unknown";
 
         Rola rola = new Rola(0, album, performer, datos.Ruta, titulo!, (int)datos.Track, (int)datos.Anio, genero);
         rolaDAO.CreateRola(rola);

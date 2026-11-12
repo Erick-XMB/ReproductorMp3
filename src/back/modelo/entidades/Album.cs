@@ -18,7 +18,7 @@ public class Album
     }
 
     // Cadena que representa la ruta de un album
-    private string path;
+    private string path = string.Empty;
 
     /// <summary>
     /// Metodo que obtiene o asigna la ruta de un album
@@ -30,7 +30,7 @@ public class Album
     }
 
     // Cadena que representa el nombre de un album
-    private string name;
+    private string name = string.Empty;
 
     /// <summary>
     /// Metodo que obtiene o asigna el nombre de un album
@@ -53,37 +53,6 @@ public class Album
     {
         get { return year; }
         set { year = value; }
-    }
-
-    // Atribut lista de lista de objetos rola
-    private List<Rola> rolas;
-
-    /// <summary>
-    /// Metodo que obtiene o asigna la lista de rolas
-    /// </summary>
-    /// <value></value>
-    public List<Rola> Rolas
-    {
-        get { return rolas; }
-        set { rolas = value; }
-    }
-
-
-    /// <summary>
-    /// Constructor de la clase album 
-    /// </summary>
-    /// <param name="id_album"> el identificador del album </param>
-    /// <param name="path"> la ruta del album </param>
-    /// <param name="name"> el nombre del album </param>
-    /// <param name="year"> el anio del album </param>
-    /// <param name="rolas"> la lista de rolas del album </param>
-    public Album(int id_album, string path, string name, int year, List<Rola> rolas)
-    {
-        this.id_album = id_album;
-        this.path = path;
-        this.name = name;
-        this.year = year;
-        this.rolas = rolas;
     }
 
     /// <summary>

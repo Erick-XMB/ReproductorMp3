@@ -30,7 +30,7 @@ public class Performer
     }
 
     // Atributo cadena que representa el nombre del performer
-    private string name;
+    private string name = string.Empty;
 
     /// <summary>
     /// Metodo que obtiene o asigna el nombre del performer

@@ -29,18 +29,22 @@ Comandos extra para la limpieza de archivos
 
 Teconologias utilizadas en el proyecto
 -------------------
+Desarrollado y probado en Ubuntu 24.04
+
+- El proyecto se desarrollo principalmente en el lenguaje C#
 - .NET SDK 10.0.114
-- libgl1-mesa-dev  
-- libxkbcommon-dev
-- libxcb-cursor0
 - cmake version 3.28.3
 - g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
 - ninja --version 1.11.1
 - Qt 6.12.0 
 (Por defecto el proyecto busca Qt en (HOME)/Qt/6.12.0/gcc_64, si se tiene instalado en otra ruta, la modificación se hace sobre el archivo vista.csproj)
-
-
 - DocFX 2.80.1 para la documentacion
+- libgl1-mesa-dev  
+- libxkbcommon-dev
+- libxcb-cursor0
+En caso de requerir instalar las librerias usar el comando:
+- sudo apt install libgl1-mesa-dev libxkbcommon-dev libxcb-cursor0
+
 
 
 Desarrollador
