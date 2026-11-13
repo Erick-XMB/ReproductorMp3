@@ -101,6 +101,7 @@ ApplicationWindow {
 
     function cargarRolasAlMinar(){
         myModel.clear()
+        tableview.hayFilaSeleccionada = false
         var filas = JSON.parse(rolasVista.obtenerRolasJson())
 
         for(var i = 0; i < filas.length; i++){
@@ -263,6 +264,31 @@ ApplicationWindow {
                         ventanaMostrarInformacionArtistas.show()
                     }
                 }
+
+                Button {
+                    id: botonBorrarRola
+                    x: 90
+                    y: 6
+                    width: 35
+                    height: 34
+                    anchors.left: botonMostrarArtistas.right
+                    anchors.leftMargin: 4
+                    text: "🗑︎"
+                    background: Rectangle {
+                        color: botonBorrarRola.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        radius: 6
+                    }
+
+                    enabled: tableview.hayFilaSeleccionada
+                    onClicked: {
+                        var fila = myModel.getRow(tableview.selectionModel.currentIndex.row)
+                        rolasVista.eliminarRola(fila.No)
+                        cargarRolasAlMinar()
+                        tableview.selectionModel.clearCurrentIndex()
+                        tableview.selectionModel.clearSelection()
+                        tableview.hayFilaSeleccionada = false
+                    }
+                }
             }
 
          Rectangle {
@@ -302,6 +328,7 @@ ApplicationWindow {
 
                     TableView{
                         id: tableview
+                        property bool hayFilaSeleccionada: false
                         Layout.fillHeight: true
                         Layout.fillWidth: true
                         clip: true
@@ -313,6 +340,7 @@ ApplicationWindow {
                         selectionModel: ItemSelectionModel{
                             
                             onCurrentChanged: function(current, previous){
+                                tableview.hayFilaSeleccionada = current.valid
                                 if(current.valid){
                                     var fila = myModel.getRow(current.row)
                                     tituloCancion.text = fila.Nombre

@@ -94,6 +94,15 @@ public class RolasControlador
     }
 
     /// <summary>
+    /// Metodo que elimina una rola de la base de datos
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos eliminar </param>
+    public void EliminarRolaDeLaBaseDeDatos(int id_rola)
+    {
+        rolaDAO.DeleteRola(id_rola);
+    }
+
+    /// <summary>
     /// Metodo que actualiza el anio de una rola en la base de datos
     /// </summary>
     /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>

@@ -167,4 +167,14 @@ public class RolasVista
         controladorRolas.ActualizarAnioDeLaRola(id_rola, anio);
     }
 
+    /// <summary>
+    /// Metodo que funciona como puente entre el controlador de las rolas con la interfaz en QML
+    /// Elimina una rola seleccionada
+    /// </summary>
+    /// <param name="id_rola"> es el id de la rola que queremos actualizar </param>
+    public void EliminarRola(int id_rola)
+    {
+        controladorRolas.EliminarRolaDeLaBaseDeDatos(id_rola);
+    }
+
 }

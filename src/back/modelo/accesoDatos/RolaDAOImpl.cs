@@ -422,5 +422,5 @@ public class RolaDAOImpl : RolaDAO
         using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
         command.Parameters.AddWithValue("$id_rola", id_rola);
         command.ExecuteNonQuery();
-    }
+    }   
 }
