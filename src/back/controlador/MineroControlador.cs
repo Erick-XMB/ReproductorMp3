@@ -66,7 +66,8 @@ public class MineroControlador
     /// <param name="ruta"> es la cadena que representa la ruta que queremos minar </param>
     /// <returns> un entero con el numero de rolas guardadas </returns>
     public int MinarYGuardar(string ruta)
-    {
+    {   
+        EliminarRolasDeLaBaseDeDatosQueNoExisten(ruta);
         List<DatosMp3> datosValidos = MinarDirectorio(ruta);
         int guardados = 0;
 
@@ -162,5 +163,23 @@ public class MineroControlador
         Rola rola = new Rola(0, album, performer, datos.Ruta, titulo!, (int)datos.Track, (int)datos.Anio, genero);
         rolaDAO.CreateRola(rola);
         return true;
+    }
+
+    /// <summary>
+    /// Eliminar de la base de datos las rolas que estan en la ruta dadad
+    /// que ya no existe su archivo en el disco
+    /// </summary>
+    /// <param name="ruta"> es el directorio asignado </param> 
+    public void EliminarRolasDeLaBaseDeDatosQueNoExisten(string ruta)
+    {
+        string prefijo  = Path.TrimEndingDirectorySeparator(ruta) + Path.DirectorySeparatorChar;
+
+        foreach(Rola rola in rolaDAO.GetTodasLasRolas())
+        {
+            if(rola.Path.StartsWith(prefijo) && !File.Exists(rola.Path))
+            {
+                rolaDAO.DeleteRola(rola.IdRola);
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@ Proyecto Reproductor MP3 MYP
 ========================
 Proyecto número 2 de la materia modelado y programación, que implementa una base de datos músical, donde se involucrán los temas de bases de datos además del diseño de interfaces gráficas.
 
-Comandos sistemas de construccion
+Comandos sistemas de construccion (Ejecutar desde la raíz del proyecto)
 -------------
 
 Los comandos para compilar y ejecutar el backend son:
