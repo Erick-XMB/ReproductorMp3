@@ -51,7 +51,17 @@ Obtendremos algo simliar a:
 ```bash
 /home/killomanlinux/Qt/6.12.0/gcc_64/lib/cmake/Qt6/Qt6Config.cmake
 ```
-Quitamos la parte de la instalación, por ejemplo: /lib/cmake/Qt6/Qt6Config.cmake, y quedarnos con el restante, por ejemplo: /home/killomanlinux/Qt/6.12.0/gcc_64.
+Quitamos la parte de la instalación, por ejemplo: 
+
+```bash
+/lib/cmake/Qt6/Qt6Config.cmake
+``` 
+
+y quedarnos con el restante, por ejemplo: 
+
+```bash
+/home/killomanlinux/Qt/6.12.0/gcc_64.
+```
 
 Es dicho directorio el cual se deberá de sustituir en QtDir condition en el archivo vista.csproj
 
@@ -60,7 +70,10 @@ Es dicho directorio el cual se deberá de sustituir en QtDir condition en el arc
 - libxkbcommon-dev
 - libxcb-cursor0
 
-En caso de requerir instalar las librerias usar el comando: sudo apt install libgl1-mesa-dev libxkbcommon-dev libxcb-cursor0
+En caso de requerir instalar las librerias usar el comando: 
+```bash
+sudo apt install libgl1-mesa-dev libxkbcommon-dev libxcb-cursor0
+```
 
 
 
