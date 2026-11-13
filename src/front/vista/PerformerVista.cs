@@ -27,6 +27,33 @@ public class PerformerVista
     }
 
     /// <summary>
+    /// Metodo que recupera todas las albums de la base de datos y las 
+    /// convierte a JSON para que el QML pueda mostrarlas 
+    /// </summary>
+    /// <returns> una cadena JSON con la lista de los albums </returns>
+    public string ObtenerTodosLosPerformersJson()
+    {
+        List<Performer> performers = performerControlador.ObtenerTodosLosPerformers();
+        var filas = new List<object>();
+
+        foreach (Performer performer in performers)
+        {
+            filas.Add(new
+            {
+                No = performer.IdPerformer,
+                Tipo = performer.IdType switch
+                {
+                    0 => "Persona",
+                    1 => "Grupo",
+                    _ => "Desconocido"
+                },
+                Nombre = performer.Name
+            });
+        }
+        return JsonSerializer.Serialize(filas);
+    }
+
+    /// <summary>
     /// Metodo que funciona como puente entre el controlador y la vista en qml
     ///  que actualiza el tipo de un performer en la base de datos
     /// </summary>
@@ -36,6 +63,4 @@ public class PerformerVista
     {
         performerControlador.ActualizarTipoDelPerformer(id_performer, id_type);
     }
-
-
 }

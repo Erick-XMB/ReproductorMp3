@@ -74,6 +74,36 @@ public class PerformerDAOImpl : PerformerDAO
         return null!;
     }
 
+    /// <summary>
+    /// Metodo que recupera a todas las performers de la base de datos
+    /// </summary>
+    /// <returns> Una lista con todas las performers que hay en la base de datos </returns>
+    public List<Performer> ObtenerTodosLosPerformers()
+    {
+        List<Performer> performers = new List<Performer>();
+
+        using SqliteConnection conexionAbierta = conexion.CrearConexion();
+        conexionAbierta.Open();
+
+        string sql = @"SELECT id_performer, id_type, name FROM performers";
+
+        using SqliteCommand command = new SqliteCommand(sql, conexionAbierta);
+        using SqliteDataReader lector = command.ExecuteReader();
+
+        while (lector.Read())
+        {
+            Performer performer = new Performer(
+                Convert.ToInt32(lector["id_performer"]),
+                Convert.ToInt32(lector["id_type"]),
+                lector["name"].ToString()!
+            );
+
+            performers.Add(performer);
+        }
+
+        return performers;
+    }
+
 
     /// <summary>
     /// Metood que nos devuelve un performer segun su nombre

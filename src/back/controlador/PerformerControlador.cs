@@ -39,6 +39,15 @@ public class PerformerControlador
     }
 
     /// <summary>
+    /// Metodo que recupera a todas las performers de la base de datos
+    /// </summary>
+    /// <returns> Una lista con todas las performers que hay en la base de datos </returns>
+    public List<Performer> ObtenerTodosLosPerformers()
+    {
+        return performerDAO.ObtenerTodosLosPerformers();
+    }
+
+    /// <summary>
     /// Metodo que actualiza el tipo de un performer en la base de datos
     /// </summary>
     /// <param name="id_performer"> es el id del performer que queremos actualizar </param>

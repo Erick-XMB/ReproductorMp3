@@ -11,7 +11,7 @@ Window {
     id: ventanaMostrarInformacionArtistas
     title: "Seleccionar para mostrar información"
     width: 500
-    height: 150
+    height: 175
     color: "#121212"
 
     ColumnLayout {
@@ -52,6 +52,23 @@ Window {
                             ventanaMostarInformacionAlbums.show()
                             ventanaMostarInformacionAlbums.cargarTodasLosAlbumsALaTabla()
                             ventanaMostrarInformacionArtistas.close()
+                        }
+                    }
+
+                    Button {
+                        id: buttonMostrarPerformers
+                        text: "Intérpretes"
+                        Layout.fillWidth: true
+
+                        background: Rectangle {
+                            radius: 6
+                            color: buttonMostrarPerformers.down ? Qt.darker("#2f7d5b", 1.2) : "#2f7d5b"
+                        }
+
+                        onClicked: {
+                            ventanaMostrarInformacionPerformers.show()
+                            ventanaMostrarInformacionPerformers.cargarTodasLosPerformersALaTabla()
+                             ventanaMostrarInformacionArtistas.close()
                         }
                     }
 

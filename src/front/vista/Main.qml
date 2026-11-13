@@ -97,6 +97,10 @@ ApplicationWindow {
     VentanaMostarInformacionAlbums{
         id: ventanaMostarInformacionAlbums
     }
+
+    VentanaMostrarInformacionPerformers{
+        id: ventanaMostrarInformacionPerformers
+    }
     
 
     function cargarRolasAlMinar(){
