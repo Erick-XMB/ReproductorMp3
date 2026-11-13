@@ -1,6 +1,6 @@
 Proyecto Reproductor MP3 MYP
 ========================
-Proyecto número 2 de la materia modelado y programación, que implementa unreproductor mp3 donde principalmente se involucrá el tema de bases de datos.
+Proyecto número 2 de la materia modelado y programación, que implementa una base de datos músical, donde se involucrán los temas de bases de datos además del diseño de interfaces gráficas.
 
 Comandos sistemas de construccion
 -------------
@@ -46,6 +46,8 @@ Para identiicar la ubicación ejecutar:
 ```bash
 find ~/Qt -name Qt6Config.cmake
 ``` 
+
+Si Qt no esta instalado en `~/Qt`, busca en todo el sistema con `find / -name Qt6Config.cmake 2>/dev/null`.
 
 Obtendremos algo simliar a:
 ```bash
