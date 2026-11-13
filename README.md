@@ -32,6 +32,7 @@ Teconologias utilizadas en el proyecto
 Desarrollado y probado en Ubuntu 24.04
 
 - El proyecto se desarrollo principalmente en el lenguaje C#
+- sqlite3 3.45.1
 - .NET SDK 10.0.114
 - cmake version 3.28.3
 - g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
