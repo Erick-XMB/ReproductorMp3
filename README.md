@@ -29,7 +29,7 @@ Comandos extra para la limpieza de archivos
 
 Teconologias utilizadas en el proyecto
 -------------------
-Desarrollado y probado en Ubuntu 24.04
+Desarrollado y probado en Ubuntu 24.04 con version de glibc 2.39
 
 - El proyecto se desarrollo principalmente en el lenguaje C#
 - sqlite3 3.45.1
