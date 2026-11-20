@@ -82,6 +82,8 @@ Problemas Conocidos
 La ruta del proyecto no debe contener espacios ni caracteres especiales, por ejemplo:
 (`&`, `(`, `)`); pues esto hace que la compilación de Qt Bridge falle si la ruta los incluye.
 
+Al momento de realizar una búsqueda en el sistema, en caso de no aparecer registros que si deberían de aparecer, solo hay que mover la tabla donde se ven las canciones, pues las búsquedas si se realizarón pero quedaron "arriba" donde no se ven (Al menos esto sucede desde la computadora donde se está desarrollando el proyecto)
+
 
 Desarrollador
 ---------
