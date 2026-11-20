@@ -214,7 +214,6 @@ public class RolaDAOImpl : RolaDAO
             Convert.ToInt32(lector["year"]),
             lector["genre"].ToString()!));
         }
-        Console.WriteLine(sql);
         return rolas;
     }
 

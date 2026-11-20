@@ -1,6 +1,6 @@
 Proyecto Reproductor MP3 MYP
 ========================
-Proyecto número 2 de la materia modelado y programación, que implementa una base de datos músical, donde se involucrán los temas de bases de datos además del diseño de interfaces gráficas.
+Proyecto número 2 de la materia modelado y programación, que implementa una base de datos músical, con el fin de funcionar como un reporoductor de Mp3, donde exclusivamente se podrá guardar audios que contengan la etiqueta id3v2.4 . En este proyecto se involucrán los temas de bases de datos además del diseño de interfaces gráficas.
 
 Comandos sistemas de construccion (Ejecutar desde la raíz del proyecto)
 -------------
@@ -77,6 +77,10 @@ En caso de requerir instalar las librerias usar el comando:
 sudo apt install libgl1-mesa-dev libxkbcommon-dev libxcb-cursor0
 ```
 
+Problemas Conocidos
+----------------
+La ruta del proyecto no debe contener espacios ni caracteres especiales, por ejemplo:
+(`&`, `(`, `)`); pues esto hace que la compilación de Qt Bridge falle si la ruta los incluye.
 
 
 Desarrollador

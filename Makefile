@@ -15,7 +15,7 @@ front:
 runFront:
 	dotnet run --project src/front/vista/vista.csproj
 
-limpiarCliente:
+limpiarFront:
 	dotnet clean src/front/vista/vista.csproj
 
 docs:
