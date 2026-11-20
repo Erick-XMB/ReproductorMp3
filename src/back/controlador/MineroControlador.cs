@@ -66,11 +66,11 @@ public class MineroControlador
     /// <param name="ruta"> es la cadena que representa la ruta que queremos minar </param>
     /// <returns> un entero con el numero de rolas guardadas </returns>
     public int MinarYGuardar(string ruta)
-    {   
-        EliminarRolasDeLaBaseDeDatosQueNoExisten(ruta);
+    {
         List<DatosMp3> datosValidos = MinarDirectorio(ruta);
         int guardados = 0;
-
+        EliminarRolasDeLaBaseDeDatosQueNoExisten(ruta);
+        
         foreach (DatosMp3 datos in datosValidos)
         {
             try
@@ -166,17 +166,20 @@ public class MineroControlador
     }
 
     /// <summary>
-    /// Eliminar de la base de datos las rolas que estan en la ruta dadad
-    /// que ya no existe su archivo en el disco
+    /// Eliminar de la base de datos las rolas que estan en la ruta dada
+    /// que ya no existe su archivo en el disco o bien, no esta en la ruta dada
     /// </summary>
     /// <param name="ruta"> es el directorio asignado </param> 
     public void EliminarRolasDeLaBaseDeDatosQueNoExisten(string ruta)
     {
-        string prefijo  = Path.TrimEndingDirectorySeparator(ruta) + Path.DirectorySeparatorChar;
+        string prefijo = Path.TrimEndingDirectorySeparator(Path.GetFullPath(ruta)) + Path.DirectorySeparatorChar;
 
-        foreach(Rola rola in rolaDAO.GetTodasLasRolas())
-        {
-            if(rola.Path.StartsWith(prefijo) && !File.Exists(rola.Path))
+        foreach (Rola rola in rolaDAO.GetTodasLasRolas())
+        {   
+
+            bool noEsta = !rola.Path.StartsWith(prefijo, StringComparison.Ordinal);
+
+            if (noEsta || !File.Exists(rola.Path))
             {
                 rolaDAO.DeleteRola(rola.IdRola);
             }
